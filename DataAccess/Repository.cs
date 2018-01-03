@@ -15,12 +15,29 @@ namespace DataAccess
             db = new Car24DatabaseEntities();
         }
 
-        public List<Car> GetAllCars()
+        public List<CarVM> GetAllCars()
         {
+
+            var brand = db.Brands;
+            var model = db.CarModels;
+            var car = db.Cars;
+
             using (db = new Car24DatabaseEntities())
             {
-                var cars = (from c in db.Cars
-                    select c).ToList();
+
+                var cars = (from a in car
+                    join m in model
+                        on a.CarModelId equals m.Id
+                    join b in brand
+                        on a.BrandId equals b.Id
+                            select new CarVM
+                            {
+                                brand = b.BrandName,
+                                model = m.CarModelName,
+                                cena = a.Price,
+                                miejscowosc = a.City
+                            }
+                ).ToList();
 
                 return cars;
             }

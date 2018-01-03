@@ -90,6 +90,7 @@
     <Compile Include="CarModel.cs">
       <DependentUpon>Car24Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CarVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>
