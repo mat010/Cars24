@@ -1,0 +1,18 @@
+﻿@model IEnumerable<DataAccess.Car>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul class="list-unstyled">
+    @foreach (var item in Model)
+    {
+        <li class="media">
+            <img class="img-thumbnail" src="~/Images/download.svg" alt="Image here">
+            <div class="media-body">
+                <h3 class="mt-0 mb-1">Marka @Html.DisplayFor(modelItem => item.BrandId) Model: @Html.DisplayFor(modelItem => item.CarModelId)</h3>
+                <h4>Cena: @Html.DisplayFor(modelItem => item.Price) City: @Html.DisplayFor(modelItem => item.City)</h4>
+            </div>
+        </li>
+    }
+</ul>
