@@ -281,3 +281,9 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+ 
