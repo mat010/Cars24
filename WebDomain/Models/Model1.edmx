@@ -22,6 +22,10 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Distance" Type="int" />
+          <Property Name="Capacity" Type="int" />
+          <Property Name="PetrolTypeId" Type="int" />
         </EntityType>
         <EntityType Name="CarModel">
           <Key>
@@ -30,6 +34,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CarModelName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="BrandId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PetrolType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PetrolName" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK__Car__BrandId__286302EC">
           <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
@@ -55,6 +66,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Car__PetrolTypeI__36B12243">
+          <End Role="PetrolType" Type="Self.PetrolType" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PetrolType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="PetrolTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CarModel__BrandI__25869641">
           <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
           <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
@@ -71,12 +94,17 @@
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarModel" EntityType="Self.CarModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PetrolType" EntityType="Self.PetrolType" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Car__BrandId__286302EC" Association="Self.FK__Car__BrandId__286302EC">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
           <AssociationSet Name="FK__Car__CarModelId__29572725" Association="Self.FK__Car__CarModelId__29572725">
             <End Role="CarModel" EntitySet="CarModel" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Car__PetrolTypeI__36B12243" Association="Self.FK__Car__PetrolTypeI__36B12243">
+            <End Role="PetrolType" EntitySet="PetrolType" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
           <AssociationSet Name="FK__CarModel__BrandI__25869641" Association="Self.FK__CarModel__BrandI__25869641">
@@ -108,8 +136,13 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Distance" Type="Int32" />
+          <Property Name="Capacity" Type="Int32" />
+          <Property Name="PetrolTypeId" Type="Int32" />
           <NavigationProperty Name="Brand" Relationship="Self.FK__Car__BrandId__286302EC" FromRole="Car" ToRole="Brand" />
           <NavigationProperty Name="CarModel" Relationship="Self.FK__Car__CarModelId__29572725" FromRole="Car" ToRole="CarModel" />
+          <NavigationProperty Name="PetrolType" Relationship="Self.FK__Car__PetrolTypeI__36B12243" FromRole="Car" ToRole="PetrolType" />
         </EntityType>
         <EntityType Name="CarModel">
           <Key>
@@ -120,6 +153,14 @@
           <Property Name="BrandId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Brand" Relationship="Self.FK__CarModel__BrandI__25869641" FromRole="CarModel" ToRole="Brand" />
           <NavigationProperty Name="Cars" Relationship="Self.FK__Car__CarModelId__29572725" FromRole="CarModel" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="PetrolType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PetrolName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK__Car__PetrolTypeI__36B12243" FromRole="PetrolType" ToRole="Car" />
         </EntityType>
         <Association Name="FK__Car__BrandId__286302EC">
           <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
@@ -157,10 +198,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CarDatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK__Car__PetrolTypeI__36B12243">
+          <End Role="PetrolType" Type="Self.PetrolType" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PetrolType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="PetrolTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarDatabaseEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Brands" EntityType="Self.Brand" />
           <EntitySet Name="Cars" EntityType="Self.Car" />
           <EntitySet Name="CarModels" EntityType="Self.CarModel" />
+          <EntitySet Name="PetrolTypes" EntityType="Self.PetrolType" />
           <AssociationSet Name="FK__Car__BrandId__286302EC" Association="Self.FK__Car__BrandId__286302EC">
             <End Role="Brand" EntitySet="Brands" />
             <End Role="Car" EntitySet="Cars" />
@@ -173,13 +227,17 @@
             <End Role="CarModel" EntitySet="CarModels" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
+          <AssociationSet Name="FK__Car__PetrolTypeI__36B12243" Association="Self.FK__Car__PetrolTypeI__36B12243">
+            <End Role="PetrolType" EntitySet="PetrolTypes" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CarDatabaseModelStoreContainer" CdmEntityContainer="CarDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="CarDatabaseModelStoreContainer" CdmEntityContainer="CarDatabaseEntities1">
           <EntitySetMapping Name="Brands">
             <EntityTypeMapping TypeName="CarDatabaseModel.Brand">
               <MappingFragment StoreEntitySet="Brand">
@@ -197,6 +255,10 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="PetrolTypeId" ColumnName="PetrolTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -206,6 +268,14 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CarModelName" ColumnName="CarModelName" />
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PetrolTypes">
+            <EntityTypeMapping TypeName="CarDatabaseModel.PetrolType">
+              <MappingFragment StoreEntitySet="PetrolType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PetrolName" ColumnName="PetrolName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

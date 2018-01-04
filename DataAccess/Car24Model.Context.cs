@@ -28,5 +28,6 @@ namespace DataAccess
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<CarModel> CarModels { get; set; }
+        public virtual DbSet<PetrolType> PetrolTypes { get; set; }
     }
 }

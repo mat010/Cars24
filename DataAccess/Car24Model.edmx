@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Car24DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Car24DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="Id" />
@@ -22,6 +22,10 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Distance" Type="int" />
+          <Property Name="Capacity" Type="int" />
+          <Property Name="PetrolTypeId" Type="int" />
         </EntityType>
         <EntityType Name="CarModel">
           <Key>
@@ -30,6 +34,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CarModelName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="BrandId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PetrolType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PetrolName" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK__Car__BrandId__286302EC">
           <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
@@ -52,6 +63,18 @@
             </Principal>
             <Dependent Role="Car">
               <PropertyRef Name="CarModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Car__PetrolTypeI__36B12243">
+          <End Role="PetrolType" Type="Self.PetrolType" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PetrolType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="PetrolTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -71,6 +94,7 @@
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarModel" EntityType="Self.CarModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PetrolType" EntityType="Self.PetrolType" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Car__BrandId__286302EC" Association="Self.FK__Car__BrandId__286302EC">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="Car" EntitySet="Car" />
@@ -79,24 +103,49 @@
             <End Role="CarModel" EntitySet="CarModel" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
+          <AssociationSet Name="FK__Car__PetrolTypeI__36B12243" Association="Self.FK__Car__PetrolTypeI__36B12243">
+            <End Role="PetrolType" EntitySet="PetrolType" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
           <AssociationSet Name="FK__CarModel__BrandI__25869641" Association="Self.FK__CarModel__BrandI__25869641">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="CarModel" EntitySet="CarModel" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Car24DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Car24DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brands" EntityType="Car24DatabaseModel.Brand" />
+          <EntitySet Name="Cars" EntityType="Car24DatabaseModel.Car" />
+          <EntitySet Name="CarModels" EntityType="Car24DatabaseModel.CarModel" />
+          <EntitySet Name="PetrolTypes" EntityType="Car24DatabaseModel.PetrolType" />
+          <AssociationSet Name="FK__Car__BrandId__286302EC" Association="Car24DatabaseModel.FK__Car__BrandId__286302EC">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CarModel__BrandI__25869641" Association="Car24DatabaseModel.FK__CarModel__BrandI__25869641">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="CarModel" EntitySet="CarModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Car__CarModelId__29572725" Association="Car24DatabaseModel.FK__Car__CarModelId__29572725">
+            <End Role="CarModel" EntitySet="CarModels" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Car__PetrolTypeI__36B12243" Association="Car24DatabaseModel.FK__Car__PetrolTypeI__36B12243">
+            <End Role="PetrolType" EntitySet="PetrolTypes" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BrandName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Cars" Relationship="Self.FK__Car__BrandId__286302EC" FromRole="Brand" ToRole="Car" />
-          <NavigationProperty Name="CarModels" Relationship="Self.FK__CarModel__BrandI__25869641" FromRole="Brand" ToRole="CarModel" />
+          <Property Name="BrandName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Car24DatabaseModel.FK__Car__BrandId__286302EC" FromRole="Brand" ToRole="Car" />
+          <NavigationProperty Name="CarModels" Relationship="Car24DatabaseModel.FK__CarModel__BrandI__25869641" FromRole="Brand" ToRole="CarModel" />
         </EntityType>
         <EntityType Name="Car">
           <Key>
@@ -105,25 +154,38 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BrandId" Type="Int32" Nullable="false" />
           <Property Name="CarModelId" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Brand" Relationship="Self.FK__Car__BrandId__286302EC" FromRole="Car" ToRole="Brand" />
-          <NavigationProperty Name="CarModel" Relationship="Self.FK__Car__CarModelId__29572725" FromRole="Car" ToRole="CarModel" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Distance" Type="Int32" />
+          <Property Name="Capacity" Type="Int32" />
+          <Property Name="PetrolTypeId" Type="Int32" />
+          <NavigationProperty Name="Brand" Relationship="Car24DatabaseModel.FK__Car__BrandId__286302EC" FromRole="Car" ToRole="Brand" />
+          <NavigationProperty Name="CarModel" Relationship="Car24DatabaseModel.FK__Car__CarModelId__29572725" FromRole="Car" ToRole="CarModel" />
+          <NavigationProperty Name="PetrolType" Relationship="Car24DatabaseModel.FK__Car__PetrolTypeI__36B12243" FromRole="Car" ToRole="PetrolType" />
         </EntityType>
         <EntityType Name="CarModel">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CarModelName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CarModelName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="BrandId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Brand" Relationship="Self.FK__CarModel__BrandI__25869641" FromRole="CarModel" ToRole="Brand" />
-          <NavigationProperty Name="Cars" Relationship="Self.FK__Car__CarModelId__29572725" FromRole="CarModel" ToRole="Car" />
+          <NavigationProperty Name="Brand" Relationship="Car24DatabaseModel.FK__CarModel__BrandI__25869641" FromRole="CarModel" ToRole="Brand" />
+          <NavigationProperty Name="Cars" Relationship="Car24DatabaseModel.FK__Car__CarModelId__29572725" FromRole="CarModel" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="PetrolType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PetrolName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Car24DatabaseModel.FK__Car__PetrolTypeI__36B12243" FromRole="PetrolType" ToRole="Car" />
         </EntityType>
         <Association Name="FK__Car__BrandId__286302EC">
-          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
-          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <End Type="Car24DatabaseModel.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="Car24DatabaseModel.Car" Role="Car" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Brand">
               <PropertyRef Name="Id" />
@@ -134,8 +196,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CarModel__BrandI__25869641">
-          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
-          <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+          <End Type="Car24DatabaseModel.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="Car24DatabaseModel.CarModel" Role="CarModel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Brand">
               <PropertyRef Name="Id" />
@@ -146,8 +208,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Car__CarModelId__29572725">
-          <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
-          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <End Type="Car24DatabaseModel.CarModel" Role="CarModel" Multiplicity="1" />
+          <End Type="Car24DatabaseModel.Car" Role="Car" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CarModel">
               <PropertyRef Name="Id" />
@@ -157,23 +219,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Car24DatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Brands" EntityType="Self.Brand" />
-          <EntitySet Name="Cars" EntityType="Self.Car" />
-          <EntitySet Name="CarModels" EntityType="Self.CarModel" />
-          <AssociationSet Name="FK__Car__BrandId__286302EC" Association="Self.FK__Car__BrandId__286302EC">
-            <End Role="Brand" EntitySet="Brands" />
-            <End Role="Car" EntitySet="Cars" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CarModel__BrandI__25869641" Association="Self.FK__CarModel__BrandI__25869641">
-            <End Role="Brand" EntitySet="Brands" />
-            <End Role="CarModel" EntitySet="CarModels" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Car__CarModelId__29572725" Association="Self.FK__Car__CarModelId__29572725">
-            <End Role="CarModel" EntitySet="CarModels" />
-            <End Role="Car" EntitySet="Cars" />
-          </AssociationSet>
-        </EntityContainer>
+        <Association Name="FK__Car__PetrolTypeI__36B12243">
+          <End Type="Car24DatabaseModel.PetrolType" Role="PetrolType" Multiplicity="0..1" />
+          <End Type="Car24DatabaseModel.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PetrolType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="PetrolTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -183,29 +240,41 @@
           <EntitySetMapping Name="Brands">
             <EntityTypeMapping TypeName="Car24DatabaseModel.Brand">
               <MappingFragment StoreEntitySet="Brand">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="Car24DatabaseModel.Car">
               <MappingFragment StoreEntitySet="Car">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
-                <ScalarProperty Name="CarModelId" ColumnName="CarModelId" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PetrolTypeId" ColumnName="PetrolTypeId" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CarModelId" ColumnName="CarModelId" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CarModels">
             <EntityTypeMapping TypeName="Car24DatabaseModel.CarModel">
               <MappingFragment StoreEntitySet="CarModel">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CarModelName" ColumnName="CarModelName" />
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="CarModelName" ColumnName="CarModelName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PetrolTypes">
+            <EntityTypeMapping TypeName="Car24DatabaseModel.PetrolType">
+              <MappingFragment StoreEntitySet="PetrolType">
+                <ScalarProperty Name="PetrolName" ColumnName="PetrolName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

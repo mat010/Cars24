@@ -4,13 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7a231c4aab29473fa61368c724653282" Name="Diagram1">
-        <EntityTypeShape EntityType="CarDatabaseModel.Brand" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarDatabaseModel.Car" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarDatabaseModel.CarModel" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+      <Diagram DiagramId="240c2e54eeac474098ebbc9c60c612f9" Name="Diagram1">
+        <EntityTypeShape EntityType="CarDatabaseModel.Brand" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDatabaseModel.Car" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDatabaseModel.CarModel" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarDatabaseModel.PetrolType" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
         <AssociationConnector Association="CarDatabaseModel.FK__Car__BrandId__286302EC" ManuallyRouted="false" />
         <AssociationConnector Association="CarDatabaseModel.FK__CarModel__BrandI__25869641" ManuallyRouted="false" />
         <AssociationConnector Association="CarDatabaseModel.FK__Car__CarModelId__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="CarDatabaseModel.FK__Car__PetrolTypeI__36B12243" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

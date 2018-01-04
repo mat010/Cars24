@@ -21,21 +21,28 @@ namespace DataAccess
             var brand = db.Brands;
             var model = db.CarModels;
             var car = db.Cars;
+            var petrol = db.PetrolTypes;
 
             using (db = new Car24DatabaseEntities())
             {
 
                 var cars = (from a in car
-                    join m in model
-                        on a.CarModelId equals m.Id
-                    join b in brand
-                        on a.BrandId equals b.Id
+                            join m in model
+                                on a.CarModelId equals m.Id
+                            join b in brand
+                                on a.BrandId equals b.Id
+                            join p in petrol
+                                on a.PetrolTypeId equals p.Id
                             select new CarVM
                             {
                                 brand = b.BrandName,
                                 model = m.CarModelName,
                                 cena = a.Price,
-                                miejscowosc = a.City
+                                miejscowosc = a.City,
+                                pojemnosc = a.Capacity,
+                                przebieg = a.Distance,
+                                rok_produkcji = a.Year,
+                                rodzaj_paliwa = p.PetrolName
                             }
                 ).ToList();
 
@@ -46,7 +53,7 @@ namespace DataAccess
         public List<Brand> GetAllMarks()
         {
             var brands = (from b in db.Brands
-                select b).ToList();
+                          select b).ToList();
 
             return brands;
         }
@@ -54,7 +61,7 @@ namespace DataAccess
         public List<CarModel> GetAllCarModels()
         {
             var models = (from m in db.CarModels
-                select m).ToList();
+                          select m).ToList();
 
             return models;
         }

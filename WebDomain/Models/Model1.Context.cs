@@ -13,10 +13,10 @@ namespace WebDomain.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CarDatabaseEntities : DbContext
+    public partial class CarDatabaseEntities1 : DbContext
     {
-        public CarDatabaseEntities()
-            : base("name=CarDatabaseEntities")
+        public CarDatabaseEntities1()
+            : base("name=CarDatabaseEntities1")
         {
         }
     
@@ -28,5 +28,6 @@ namespace WebDomain.Models
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<CarModel> CarModels { get; set; }
+        public virtual DbSet<PetrolType> PetrolTypes { get; set; }
     }
 }

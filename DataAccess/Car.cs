@@ -20,8 +20,13 @@ namespace DataAccess
         public decimal Price { get; set; }
         public string Description { get; set; }
         public string City { get; set; }
+        public Nullable<int> Year { get; set; }
+        public Nullable<int> Distance { get; set; }
+        public Nullable<int> Capacity { get; set; }
+        public Nullable<int> PetrolTypeId { get; set; }
     
         public virtual Brand Brand { get; set; }
         public virtual CarModel CarModel { get; set; }
+        public virtual PetrolType PetrolType { get; set; }
     }
 }
