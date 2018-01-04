@@ -14,11 +14,18 @@ namespace DataAccess
     
     public partial class Car
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Car()
+        {
+            this.CarDetails = new HashSet<CarDetail>();
+            this.Pictures = new HashSet<Picture>();
+            this.Users = new HashSet<User>();
+        }
+    
         public int Id { get; set; }
         public int BrandId { get; set; }
         public int CarModelId { get; set; }
         public decimal Price { get; set; }
-        public string Description { get; set; }
         public string City { get; set; }
         public Nullable<int> Year { get; set; }
         public Nullable<int> Distance { get; set; }
@@ -28,5 +35,11 @@ namespace DataAccess
         public virtual Brand Brand { get; set; }
         public virtual CarModel CarModel { get; set; }
         public virtual PetrolType PetrolType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CarDetail> CarDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Picture> Pictures { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

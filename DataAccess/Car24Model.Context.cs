@@ -25,9 +25,15 @@ namespace DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Body> Bodies { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Car> Cars { get; set; }
+        public virtual DbSet<CarDetail> CarDetails { get; set; }
         public virtual DbSet<CarModel> CarModels { get; set; }
         public virtual DbSet<PetrolType> PetrolTypes { get; set; }
+        public virtual DbSet<Picture> Pictures { get; set; }
+        public virtual DbSet<TechnicalCondition> TechnicalConditions { get; set; }
+        public virtual DbSet<Transmission> Transmissions { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

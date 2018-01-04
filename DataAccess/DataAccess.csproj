@@ -66,6 +66,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Body.cs">
+      <DependentUpon>Car24Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Brand.cs">
       <DependentUpon>Car24Model.tt</DependentUpon>
     </Compile>
@@ -87,15 +90,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Car24Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="CarDetail.cs">
+      <DependentUpon>Car24Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarDetailsVM.cs" />
     <Compile Include="CarModel.cs">
       <DependentUpon>Car24Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarVM.cs" />
+    <Compile Include="CarHeaderVm.cs" />
     <Compile Include="PetrolType.cs">
+      <DependentUpon>Car24Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Picture.cs">
       <DependentUpon>Car24Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="TechnicalCondition.cs">
+      <DependentUpon>Car24Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transmission.cs">
+      <DependentUpon>Car24Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Car24Model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Car24Model.Context.tt">

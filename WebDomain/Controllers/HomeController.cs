@@ -17,5 +17,11 @@ namespace WebDomain.Controllers
             var cars = repository.GetAllCars();
             return View(cars);
         }
+
+        public ActionResult Details(int id)
+        {
+            var car = repository.GetCarById(id);
+            return View(car);
+        }
     }
 }

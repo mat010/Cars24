@@ -15,7 +15,65 @@ namespace DataAccess
             db = new Car24DatabaseEntities();
         }
 
-        public List<CarVM> GetAllCars()
+        public CarDetailsVM GetCarById(int id)
+        {
+            var brand = db.Brands;
+            var model = db.CarModels;
+            var car = db.Cars;
+            var petrol = db.PetrolTypes;
+            var body = db.Bodies;
+            var condition = db.TechnicalConditions;
+            var transmission = db.Transmissions;
+            var details = db.CarDetails;
+            var user = db.Users;
+
+            using (db = new Car24DatabaseEntities())
+            {
+
+                var carDetail = (from c in car
+                                 join m in model
+                                     on c.CarModelId equals m.Id
+                                 join b in brand
+                                     on c.BrandId equals b.Id
+                                 join p in petrol
+                                     on c.PetrolTypeId equals p.Id
+                                 join d in details
+                                     on c.Id equals d.CarId
+                                 join bo in body
+                                     on d.BodyId equals bo.Id
+                                 join t in condition
+                                     on d.ConditionId equals t.Id
+                                 join tran in transmission
+                                     on d.TransmissionId equals tran.Id
+                                 join u in user
+                                     on c.Id equals u.CarId
+                                 where c.Id == id
+                                 select new CarDetailsVM
+                                 {
+                                     Id = c.Id,
+                                     DescriptionId = d.Id,
+                                     Brand = b.BrandName,
+                                     Model = m.CarModelName,
+                                     Price = c.Price,
+                                     City = c.City,
+                                     Capacity = c.Capacity,
+                                     Distance = c.Distance,
+                                     ProductYear = c.Year,
+                                     PetrolType = p.PetrolName,
+                                     BodyName = bo.BodyName,
+                                     Description = d.Description,
+                                     Condition = t.ConditionName,
+                                     TransmissionType = tran.TransmissionName,
+                                     Email = u.Email,
+                                     UserName = u.Name,
+                                     Phone = u.Phone
+                                 }
+                ).FirstOrDefault();
+                return carDetail;
+            }
+        }
+
+        public List<CarHeaderVm> GetAllCars()
         {
 
             var brand = db.Brands;
@@ -26,23 +84,24 @@ namespace DataAccess
             using (db = new Car24DatabaseEntities())
             {
 
-                var cars = (from a in car
+                var cars = (from c in car
                             join m in model
-                                on a.CarModelId equals m.Id
+                                on c.CarModelId equals m.Id
                             join b in brand
-                                on a.BrandId equals b.Id
+                                on c.BrandId equals b.Id
                             join p in petrol
-                                on a.PetrolTypeId equals p.Id
-                            select new CarVM
+                                on c.PetrolTypeId equals p.Id
+                            select new CarHeaderVm
                             {
-                                brand = b.BrandName,
-                                model = m.CarModelName,
-                                cena = a.Price,
-                                miejscowosc = a.City,
-                                pojemnosc = a.Capacity,
-                                przebieg = a.Distance,
-                                rok_produkcji = a.Year,
-                                rodzaj_paliwa = p.PetrolName
+                                Id = c.Id,
+                                Brand = b.BrandName,
+                                Model = m.CarModelName,
+                                Price = c.Price,
+                                City = c.City,
+                                Capacity = c.Capacity,
+                                Distance = c.Distance,
+                                ProductYear = c.Year,
+                                PetrolType = p.PetrolName
                             }
                 ).ToList();
 
