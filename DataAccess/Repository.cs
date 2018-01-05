@@ -8,11 +8,11 @@ namespace DataAccess
 {
     public class Repository
     {
-        private CarDBEntities db;
+        private Car24DatabaseEntities db;
 
         public Repository()
         {
-            db = new CarDBEntities();
+            db = new Car24DatabaseEntities();
         }
 
         public CarDetailsVM GetCarById(int id)
@@ -27,7 +27,7 @@ namespace DataAccess
             var details = db.CarDetails;
             var user = db.Users;
 
-            using (db = new CarDBEntities())
+            using (db = new Car24DatabaseEntities())
             {
 
                 var carDetail = (from c in car
@@ -81,7 +81,7 @@ namespace DataAccess
             var car = db.Cars;
             var petrol = db.PetrolTypes;
 
-            using (db = new CarDBEntities())
+            using (db = new Car24DatabaseEntities())
             {
 
                 var cars = (from c in car
