@@ -41,11 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebDomain\WebDomain.csproj">
-      <Project>{8a813b1d-e7a9-441c-907b-e63ec236438e}</Project>
-      <Name>WebDomain</Name>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{58f8f3d3-36bc-4a2d-9855-c68cd4a01c4a}</Project>
+      <Name>DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

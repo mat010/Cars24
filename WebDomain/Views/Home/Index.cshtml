@@ -3,35 +3,82 @@
 @{
     ViewBag.Title = "Index";
 }
+<script src="~/scripts/jquery-3.2.1.min.js"></script>
+<div style="float: right">
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add new Car</a>
+</div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#"class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Nowe ogłoszenie</h3>
+            </div>
+            <div class="modal-body">
+                <form id="myForm">
+                    BodyName <input type="text" name="BodyName"/>
+                    Condition <input type="text" name="Condition"/>
+                    Description <input type="text" name="Description" />
 
-<ul class="list-unstyled">
-    @foreach (var item in Model)
-    {
-        <br />
-        <li>
-            <div class="row" style="border: 1px solid lightgrey; padding: 5px; border-radius: 6px">
-                <div class="col-sm-2">
-                    <img src="~/Images/obraz.jpg" alt="Image here" style="height: 110px; width: auto; margin: -5px 0 -5px -20px; border-top-left-radius: 6px; border-bottom-left-radius: 6px">
-                </div>
-                <div class="col-sm-10">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h3 style="margin-top: 11px">
-                                @Html.ActionLink($"{Html.DisplayFor(modelItem => item.Brand)} {Html.DisplayFor(modelItem => item.Model)}", "Details", new { id = item.Id })
-                            </h3>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h4>Cena: @Html.DisplayFor(modelItem => item.Price) zł </h4>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h4 style="float: right"> <span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.City)</h4>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="btnSubmit" class="btn btn-success">Submit</a>
+                <a href="#" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding: 20px 0; width: 100%">
+    <ul class="list-unstyled">
+        @foreach (var item in Model)
+        {
+            <br />
+            <li>
+                <div class="row" style="border: 1px solid lightgrey; padding: 5px; border-radius: 6px">
+                    <div class="col-sm-2">
+                        <img src="~/Images/obraz.jpg" alt="Image here" style="height: 110px; width: auto; margin: -5px 0 -5px -20px; border-top-left-radius: 6px; border-bottom-left-radius: 6px">
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h3 style="margin-top: 11px">
+                                    @Html.ActionLink($"{Html.DisplayFor(modelItem => item.Brand)} {Html.DisplayFor(modelItem => item.Model)}", "Details", new { id = item.Id })
+                                </h3>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h4>Cena: @Html.DisplayFor(modelItem => item.Price) zł </h4>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4 style="float: right"> <span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.City)</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </li>
-    }
-</ul>
-
+            </li>
+        }
+    </ul>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#btnSubmit').click(function () {
+            var myFormData = $('#myForm').serialize();
+            $.ajax({
+                type: 'POST',
+                data: myFormData,
+                url: '/Home/Insert',
+                success: function (result) {
+                    console.log(myFormData);
+                    console.log(result);
+                    if (result.Success === true) {
+                        console.log("success true from json");
+                        $('#myModal').modal('hide');
+                        $('#myForm').trigger('reset');
+                    }
+                }
+            });
+        });
+    });
+</script>

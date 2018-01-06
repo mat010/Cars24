@@ -13,9 +13,9 @@ namespace DataAccess
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CarDBEntities : DbContext
+    public partial class CarDBEntities1 : DbContext
     {
-        public CarDBEntities()
+        public CarDBEntities1()
             : base("name=CarDBEntities1")
         {
         }

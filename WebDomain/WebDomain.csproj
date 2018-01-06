@@ -202,6 +202,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{b9866c16-853b-4a34-a1b5-f56624cf25e5}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{58f8f3d3-36bc-4a2d-9855-c68cd4a01c4a}</Project>
       <Name>DataAccess</Name>

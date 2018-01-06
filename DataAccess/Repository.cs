@@ -8,11 +8,11 @@ namespace DataAccess
 {
     public class Repository
     {
-        private CarDBEntities db;
+        private CarDBEntities1 db;
 
         public Repository()
         {
-            db = new CarDBEntities();
+            db = new CarDBEntities1();
         }
 
         public CarDetailsVM GetCarById(int id)
@@ -27,7 +27,7 @@ namespace DataAccess
             var details = db.CarDetails;
             var user = db.Users;
 
-            using (db = new CarDBEntities())
+            using (db = new CarDBEntities1())
             {
 
                 var carDetail = (from c in car
@@ -73,6 +73,12 @@ namespace DataAccess
             }
         }
 
+        public bool Insert(CarDetailsVM carDetailsVm)
+        {
+            // insert later
+            return true;
+        }
+
         public List<CarHeaderVm> GetAllCars()
         {
 
@@ -81,7 +87,7 @@ namespace DataAccess
             var car = db.Cars;
             var petrol = db.PetrolTypes;
 
-            using (db = new CarDBEntities())
+            using (db = new CarDBEntities1())
             {
 
                 var cars = (from c in car
