@@ -139,5 +139,13 @@ namespace DataAccess
 
             return models;
         }
+
+        public List<PetrolType> GetPetrolType()
+        {
+            var petrol = (from p in db.PetrolTypes
+                select p).ToList();
+
+            return petrol;
+        }
     }
 }

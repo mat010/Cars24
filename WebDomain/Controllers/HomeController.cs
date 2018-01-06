@@ -61,5 +61,13 @@ namespace WebDomain.Controllers
 
             return Json(brands, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetPetrolType()
+        {
+            var petrol = (from p in repository.GetPetrolType()
+                select new PetrolViewModel { Id = p.Id, PetrolName = p.PetrolName }).ToList();
+
+            return Json(petrol, JsonRequestBehavior.AllowGet);
+        }
     }
 }
