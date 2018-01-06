@@ -21,125 +21,117 @@
         <div class="col-sm-3" style="text-align: center">
             <br/><i class="glyphicon glyphicon-user" style="font-size: 80px"></i>
             <h4> @Html.DisplayFor(model => model.UserName)</h4><br/>
-            <p><i class="glyphicon glyphicon-map-marker"></i> @Html.DisplayFor(model => model.City)</p>
             <p><i class="glyphicon glyphicon-earphone"></i> @Html.DisplayFor(model => model.Phone)</p>
             <p><i class="glyphicon glyphicon-envelope"></i> @Html.DisplayFor(model => model.Email)</p>
+            <p><i class="glyphicon glyphicon-map-marker"></i> @Html.DisplayFor(model => model.City)</p>
 
 
         </div>
     </div>
 
     <div class="row">
-        <br/>
-        <div class="col-sm-3">
+        <br /><br />
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-sm-4">
 
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Brand)
-                </dt>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Marka
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Brand)
-                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Brand)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Model)
-                </dt>
+                        <dt>
+                            Model
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Model)
-                </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Model)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Price)
-                </dt>
+                        <dt>
+                            Rok produkcji
+                        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Price)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ProductYear)
-                </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ProductYear)
+                        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.ProductYear)
-                </dd>
+                    </dl>
+                </div>
 
-            </dl>
+                <div class="col-sm-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Przebieg
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Distance) km
+                        </dd>
+
+                        <dt>
+                            Pojemność
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Capacity) cm3
+                        </dd>
+
+                        <dt>
+                            Rodzaj paliwa
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PetrolType)
+                        </dd>
+
+
+                    </dl>
+                </div>
+
+                <div class="col-sm-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Status pojazdu
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Condition)
+                        </dd>
+
+                        <dt>
+                            Skrzynia biegów
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TransmissionType)
+                        </dd>
+
+                        <dt>
+                            Typ nadwozia
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.BodyName)
+                        </dd>
+
+                    </dl>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Opis pojazdu</h3><br />
+
+                    <p>@Html.DisplayFor(model => model.Description)</p>
+                    
+                </div>
+            </div>
         </div>
-
-        <div class="col-sm-3">
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Distance)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Distance)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Capacity)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Capacity)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.PetrolType)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.PetrolType)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.BodyName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BodyName)
-                </dd>
-            </dl>
-        </div>
-
-        <div class="col-sm-3">
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Condition)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Condition)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DescriptionId)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.DescriptionId)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.TransmissionType)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TransmissionType)
-                </dd>
-            </dl>
-        </div>
-
     </div>
-
-    <div class="row">
-        <h3>Opis pojazdu</h3><br/>
-
-        <p>@Html.DisplayFor(model => model.Description)</p>
-
-    </div>
-
-
 </div>
