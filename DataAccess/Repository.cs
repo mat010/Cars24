@@ -130,5 +130,14 @@ namespace DataAccess
 
             return models;
         }
+
+        public List<CarModel> GetCarModelsByBrandId(int id)
+        {
+            var models = (from m in db.CarModels
+                where m.BrandId == id
+                select m).ToList();
+
+            return models;
+        }
     }
 }

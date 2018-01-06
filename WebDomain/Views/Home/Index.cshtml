@@ -90,18 +90,41 @@
 </div>
 <script>
     $(document).ready(function () {
+        $('#ddlBrand').change(function () {
+            $('#ddlModel').empty();
+            var brandId = $(this).val();
+            console.log(brandId);
+            if (brandId == -1) {
+                $('#ddlModel').append("<option value='-1'>--------------</option>");
+                $('#ddlModel').prop("disabled", true);
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Home/GetMarks?id=' + brandId,
+                    success: function (result) {
+                        console.log(result);
+                        $('#ddlModel').prop("disabled", false);
+                        $('#ddlModel').append("<option value='-1'>--Select Model--</option>");
+                        $.each(result, function (index, optiondata) {
+                            $('#ddlModel').append("<option value='" + optiondata.Id + "'>" + optiondata.ModelName + "</option>");
+                        });
+                    }
+                });
+            }
+        });
+
         $('#btnModal').click(function () {
+            $('#ddlBrand').empty();
+            $('#ddlModel').empty();
             $.ajax({
                 type: 'GET',
-                url: '/Home/GetTest',
+                url: '/Home/GetBrands',
                 success: function (result) {
                     console.log(result);
-                    $('#ddlBrand').empty();
-                    $('#ddlModel').empty();
                     $('#ddlBrand').append("<option value='-1'>--Select Car--</option>");
-                    $('#ddlModel').append("<option value='-1'>--Select Model--</option>");
+                    $('#ddlModel').append("<option value='-1'>--------------</option>");
                     $('#ddlModel').prop("disabled", true);
-                    $.each(result, function (index, optiondata) {                  
+                    $.each(result, function (index, optiondata) {
                         $('#ddlBrand').append("<option value='" + optiondata.Id + "'>" + optiondata.BrandName + "</option>");
                     });
                 }

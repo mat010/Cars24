@@ -1,145 +1,146 @@
 ﻿@model DataAccess.CarDetailsVM
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Szczegóły ogłoszenia";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>CarDetailsVM</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Brand)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Brand)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductYear)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductYear)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Distance)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Distance)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Capacity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Capacity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PetrolType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PetrolType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BodyName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BodyName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Condition)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Condition)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DescriptionId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DescriptionId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TransmissionType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TransmissionType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-    </dl>
-</div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    <br /><i class="glyphicon glyphicon-circle-arrow-left"></i> @Html.ActionLink("Powrót do wyników", "Index")
 </p>
+
+<div class="row">
+
+    <div class="col-sm-9"><h2>@Html.DisplayFor(model => model.Brand) @Html.DisplayFor(model => model.Model)</h2></div>
+    <div class="col-sm-3" style="text-align: right">
+        <h1>@Html.DisplayFor(model => model.Price) zł</h1><br />
+    </div>
+
+    <div class="row">
+        <div class="col-sm-9">
+            <img src="~/Images/obraz.jpg" style="width: 100%">
+        </div>
+        <div class="col-sm-3" style="text-align: center">
+            <br /><i class="glyphicon glyphicon-user" style="font-size: 80px"></i>
+            <h4> @Html.DisplayFor(model => model.UserName)</h4><br />
+            <p><i class="glyphicon glyphicon-map-marker"></i> @Html.DisplayFor(model => model.City)</p>
+            <p><i class="glyphicon glyphicon-earphone"></i> @Html.DisplayFor(model => model.Phone)</p>
+            <p><i class="glyphicon glyphicon-envelope"></i> @Html.DisplayFor(model => model.Email)</p>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <br />
+        <div class="col-sm-3">
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Brand)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Brand)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Model)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Model)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProductYear)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ProductYear)
+                </dd>
+
+            </dl>
+        </div>
+
+        <div class="col-sm-3">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Distance)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Distance)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Capacity)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Capacity)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PetrolType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PetrolType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BodyName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BodyName)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col-sm-3">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Condition)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Condition)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CarId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CarId)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TransmissionType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TransmissionType)
+                </dd>
+            </dl>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <h3>Opis pojazdu</h3><br />
+
+        <p>@Html.DisplayFor(model => model.Description)</p>
+
+    </div>
+
+
+</div>

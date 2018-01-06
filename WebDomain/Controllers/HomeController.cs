@@ -45,12 +45,16 @@ namespace WebDomain.Controllers
             return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
         }
 
-        public List<Brand> GetBrands()
+        public JsonResult GetMarks(int id)
         {
-            return repository.GetAllMarks();
+            var models = (from m in repository.GetCarModelsByBrandId(id)
+                          select new CarModelViewModel { Id = m.Id, ModelName = m.CarModelName }).ToList();
+
+            return Json(models, JsonRequestBehavior.AllowGet);
+
         }
 
-        public JsonResult GetTest()
+        public JsonResult GetBrands()
         {
             var brands = (from b in repository.GetAllMarks()
             select new BrandViewModel { Id = b.Id, BrandName = b.BrandName }).ToList();
