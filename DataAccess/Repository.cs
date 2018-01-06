@@ -73,6 +73,14 @@ namespace DataAccess
             }
         }
 
+        public ICollection<Transmission> GetTransmissionType()
+        {
+            var transmission = (from t in db.Transmissions
+                select t).ToList();
+
+            return transmission;
+        }
+
         public bool Insert(CarDetailsVM carDetailsVm)
         {
             // insert later

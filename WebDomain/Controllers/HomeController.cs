@@ -69,5 +69,13 @@ namespace WebDomain.Controllers
 
             return Json(petrol, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetTransmissionType()
+        {
+            var transmission = (from t in repository.GetTransmissionType()
+                select new TransmissionViewModel { Id = t.Id, TransmissionName = t.TransmissionName }).ToList();
+
+            return Json(transmission, JsonRequestBehavior.AllowGet);
+        }
     }
 }
