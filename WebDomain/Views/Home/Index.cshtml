@@ -5,20 +5,47 @@
 }
 <script src="~/scripts/jquery-3.2.1.min.js"></script>
 <div style="float: right">
-    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add new Car</a>
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="btnModal">Add new Car</a>
 </div>
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <a href="#"class="close" data-dismiss="modal">&times;</a>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
                 <h3 class="modal-title">Nowe ogłoszenie</h3>
             </div>
             <div class="modal-body">
                 <form id="myForm">
-                    BodyName <input type="text" name="BodyName"/>
-                    Condition <input type="text" name="Condition"/>
-                    Description <input type="text" name="Description" />
+                    Brand <select name="Brand" id="ddlBrand"></select>
+                    <br />
+                    Model <select name="Model" id="ddlModel"></select>
+                    <br />
+                    Price <input type="number" name="Price" />
+                    <br />
+                    City <input type="text" name="City" />
+                    <br />
+                    ProductYear <input type="number" name="ProductYear" />
+                    <br />
+                    Distance <input type="number" name="Distance" />
+                    <br />
+                    Capacity <input type="number" name="Capacity" />
+                    <br />
+                    PetrolType <select name="PetrolType" id="ddlPetrolType"></select>
+                    <br />
+                    TransmissionType <select name="TransmissionType" id="ddlTransmissionType"></select>
+                    <br />
+                    BodyName <select name="BodyName" id="ddlBodyName"></select>
+                    <br />
+                    Condition <select name="Condition" id="ddlCondition"></select>
+                    <br />
+                    Description <textarea name="Description" rows="10"></textarea>
+                    <br />
+                    Email <input type="email" name="Email" />
+                    <br />
+                    Phone <input type="text" name="Phone" />
+                    <br />
+                    UserName <input type="text" name="UserName" />
+                    <br />
 
                 </form>
             </div>
@@ -62,7 +89,26 @@
     </ul>
 </div>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
+        $('#btnModal').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Home/GetTest',
+                success: function (result) {
+                    console.log(result);
+                    $('#ddlBrand').empty();
+                    $('#ddlModel').empty();
+                    $('#ddlBrand').append("<option value='-1'>--Select Car--</option>");
+                    $('#ddlModel').append("<option value='-1'>--Select Model--</option>");
+                    $('#ddlModel').prop("disabled", true);
+                    $.each(result, function (index, optiondata) {                  
+                        $('#ddlBrand').append("<option value='" + optiondata.Id + "'>" + optiondata.BrandName + "</option>");
+                    });
+                }
+            });
+        });
+
+
         $('#btnSubmit').click(function () {
             var myFormData = $('#myForm').serialize();
             $.ajax({

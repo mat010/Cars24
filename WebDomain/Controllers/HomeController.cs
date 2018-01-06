@@ -1,6 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using BusinessLogic;
 using DataAccess;
+using WebDomain.Models;
 
 namespace WebDomain.Controllers
 {
@@ -40,6 +43,19 @@ namespace WebDomain.Controllers
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<Brand> GetBrands()
+        {
+            return repository.GetAllMarks();
+        }
+
+        public JsonResult GetTest()
+        {
+            var brands = (from b in repository.GetAllMarks()
+            select new BrandViewModel { Id = b.Id, BrandName = b.BrandName }).ToList();
+
+            return Json(brands, JsonRequestBehavior.AllowGet);
         }
     }
 }

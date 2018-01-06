@@ -50,8 +50,8 @@ namespace DataAccess
                                  where c.Id == id
                                  select new CarDetailsVM
                                  {
-                                     Id = c.Id,
-                                     DescriptionId = d.Id,
+                                     Id = d.Id,
+                                     CarId = c.Id,
                                      Brand = b.BrandName,
                                      Model = m.CarModelName,
                                      Price = c.Price,
