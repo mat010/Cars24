@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 using BusinessLogic;
 using DataAccess;
@@ -16,6 +17,7 @@ namespace WebDomain.Controllers
         {
             repository = new Repository();
             validate = new Validation();
+            Thread.Sleep(1000);
         }
 
         public ActionResult Index()
