@@ -4,143 +4,187 @@
     ViewBag.Title = "Szczegóły ogłoszenia";
 }
 
-<p>
-    <br /><i class="glyphicon glyphicon-circle-arrow-left"></i> @Html.ActionLink("Powrót do wyników", "Index")
-</p>
+
 
 <div class="row">
-
-    <div class="col-sm-9"><h2>@Html.DisplayFor(model => model.Brand) @Html.DisplayFor(model => model.Model)</h2></div>
-    <div class="col-sm-3" style="text-align: right">
-        <h1>@Html.DisplayFor(model => model.Price) zł</h1><br />
+    <div class="col-sm-12">
+        <h1 class="page-header">
+            @Html.DisplayFor(model => model.Brand) @Html.DisplayFor(model => model.Model)
+            <small>@Html.DisplayFor(model => model.ProductYear)</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("Home", "Index")
+            </li>
+            <li class="active">Osobowe</li>
+            <li class="active">@Html.DisplayFor(model => model.Brand)</li>
+            <li class="active">@Html.DisplayFor(model => model.Model)</li>
+        </ol>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-sm-9">
-            <img src="~/Images/obraz.jpg" style="width: 100%">
+
+
+<div class="row">
+    <div class="col-sm-12">
+
+
+        <div class="row">
+            <div class="col-sm-9">
+                <!--<img src="~/Images/obraz.jpg" style="width: 100%">-->
+
+
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img class="img-responsive" src="~/Images/obraz.jpg" alt="">
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="~/Images/obraz.jpg" alt="">
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="~/Images/obraz.jpg" alt="">
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+
+
+
+            </div>
+            <div class="col-sm-3">
+
+                <h1><span class="label label-default">@Html.DisplayFor(model => model.Price) zł</span></h1><br/>
+                
+
+
+                <div class="well">
+                    <h1 align="center" style="font-size: 55px"><i class="glyphicon glyphicon-user"></i></h1>
+                    <p align="center" style="font-size: 16px"> @Html.DisplayFor(model => model.UserName)</p><br />
+                    <p><i class="glyphicon glyphicon-earphone"></i> @Html.DisplayFor(model => model.Phone)</p>
+                    <p><i class="glyphicon glyphicon-envelope"></i> @Html.DisplayFor(model => model.Email)</p>
+                    <p><i class="glyphicon glyphicon-map-marker"></i> @Html.DisplayFor(model => model.City)</p>
+                </div>
+                </div>
         </div>
-        <div class="col-sm-3" style="text-align: center">
-            <br /><i class="glyphicon glyphicon-user" style="font-size: 80px"></i>
-            <h4> @Html.DisplayFor(model => model.UserName)</h4><br />
-            <p><i class="glyphicon glyphicon-map-marker"></i> @Html.DisplayFor(model => model.City)</p>
-            <p><i class="glyphicon glyphicon-earphone"></i> @Html.DisplayFor(model => model.Phone)</p>
-            <p><i class="glyphicon glyphicon-envelope"></i> @Html.DisplayFor(model => model.Email)</p>
+
+        <div class="row">
+            <br /><br />
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Marka
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Brand)
+                            </dd>
+
+                            <dt>
+                                Model
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Model)
+                            </dd>
+
+                            <dt>
+                                Rok produkcji
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.ProductYear)
+                            </dd>
+
+                        </dl>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Przebieg
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Distance) km
+                            </dd>
+
+                            <dt>
+                                Pojemność
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Capacity) cm3
+                            </dd>
+
+                            <dt>
+                                Rodzaj paliwa
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.PetrolType)
+                            </dd>
 
 
+                        </dl>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Status pojazdu
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Condition)
+                            </dd>
+
+                            <dt>
+                                Skrzynia biegów
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.TransmissionType)
+                            </dd>
+
+                            <dt>
+                                Typ nadwozia
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.BodyName)
+                            </dd>
+
+                        </dl>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-header">Opis pojazdu</h4>
+
+                        <p>@Html.DisplayFor(model => model.Description)</p><br />
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="row">
-        <br />
-        <div class="col-sm-3">
-
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Brand)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Brand)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Model)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Model)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Price)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Price)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ProductYear)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ProductYear)
-                </dd>
-
-            </dl>
-        </div>
-
-        <div class="col-sm-3">
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Distance)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Distance)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Capacity)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Capacity)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.PetrolType)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.PetrolType)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.BodyName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BodyName)
-                </dd>
-            </dl>
-        </div>
-
-        <div class="col-sm-3">
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Condition)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Condition)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.CarId)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.CarId)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.TransmissionType)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TransmissionType)
-                </dd>
-            </dl>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <h3>Opis pojazdu</h3><br />
-
-        <p>@Html.DisplayFor(model => model.Description)</p>
-
-    </div>
-
-
 </div>
