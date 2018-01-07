@@ -19,7 +19,7 @@ namespace DataAccess
         {
             this.CarDetails = new HashSet<CarDetail>();
             this.Pictures = new HashSet<Picture>();
-            this.Users = new HashSet<User>();
+            this.XrefUserCars = new HashSet<XrefUserCar>();
         }
     
         public int Id { get; set; }
@@ -40,6 +40,6 @@ namespace DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Picture> Pictures { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<XrefUserCar> XrefUserCars { get; set; }
     }
 }

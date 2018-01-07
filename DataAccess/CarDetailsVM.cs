@@ -16,6 +16,7 @@ namespace DataAccess
         public string Email { get; set; }
         public string Phone { get; set; }
         public string TransmissionType { get; set; }
+        public int TransmissionTypeId { get; set; }
         public string UserName { get; set; }
         public int CarDetailId { get; set; }
     }

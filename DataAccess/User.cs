@@ -14,12 +14,18 @@ namespace DataAccess
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.XrefUserCars = new HashSet<XrefUserCar>();
+        }
+    
         public int Id { get; set; }
-        public int CarId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
     
-        public virtual Car Car { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<XrefUserCar> XrefUserCars { get; set; }
     }
 }

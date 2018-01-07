@@ -26,6 +26,7 @@ namespace DataAccess
             var transmission = db.Transmissions;
             var details = db.CarDetails;
             var user = db.Users;
+            var xrefUserCar = db.XrefUserCars;
 
             using (db = new CarDBEntities1())
             {
@@ -45,8 +46,10 @@ namespace DataAccess
                                      on d.ConditionId equals t.Id
                                  join tran in transmission
                                      on d.TransmissionId equals tran.Id
+                                 join x in xrefUserCar
+                                     on c.Id equals x.CarId
                                  join u in user
-                                     on c.Id equals u.CarId
+                                     on x.UserId equals u.Id
                                  where c.Id == id
                                  select new CarDetailsVM
                                  {
@@ -76,7 +79,7 @@ namespace DataAccess
         public ICollection<TechnicalCondition> GetCondition()
         {
             var condition = (from c in db.TechnicalConditions
-                select c).ToList();
+                             select c).ToList();
 
             return condition;
         }
@@ -84,7 +87,7 @@ namespace DataAccess
         public ICollection<Body> GetBodyType()
         {
             var body = (from b in db.Bodies
-                select b).ToList();
+                        select b).ToList();
 
             return body;
         }
@@ -92,20 +95,74 @@ namespace DataAccess
         public ICollection<Transmission> GetTransmissionType()
         {
             var transmission = (from t in db.Transmissions
-                select t).ToList();
+                                select t).ToList();
 
             return transmission;
         }
 
         public bool Insert(CarDetailsVM carDetailsVm)
         {
-            // insert later
+            using (db = new CarDBEntities1())
+            {
+                var carHeader = db.Cars.Add(new Car
+                {
+                    BrandId = carDetailsVm.BrandId,
+                    Capacity = carDetailsVm.Capacity,
+                    CarModelId = carDetailsVm.ModelId,
+                    Price = carDetailsVm.Price,
+                    City = carDetailsVm.City,
+                    Year = carDetailsVm.ProductYear,
+                    Distance = carDetailsVm.Distance,
+                    PetrolTypeId = carDetailsVm.PetrolTypeId
+                });
+
+                db.SaveChanges();
+                var carDetail = db.CarDetails.Add(new CarDetail
+                {
+                    CarId = carHeader.Id,
+                    BodyId = carDetailsVm.BodyId,
+                    TransmissionId = carDetailsVm.TransmissionTypeId,
+                    ConditionId = carDetailsVm.ConditionId,
+                    Description = carDetailsVm.Description
+                });
+
+                db.SaveChanges();
+
+                var user = GetUserByEmail(carDetailsVm.Email);
+                if (user == null)
+                {
+                    user = new User
+                    {
+                        Email = carDetailsVm.Email,
+                        Name = carDetailsVm.UserName,
+                        Phone = carDetailsVm.Phone
+                    };
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+                var xrefUserCar = db.XrefUserCars.Add(new XrefUserCar
+                {
+                    CarId = carHeader.Id,
+                    UserId = user.Id
+                });
+                db.SaveChanges();
+            }
             return true;
+        }
+
+        private User GetUserByEmail(string email)
+        {
+            //using (db = new CarDBEntities1())
+            //{
+            var user = (from u in db.Users
+                        where u.Email == email
+                        select u).FirstOrDefault();
+            return user;
+            //}
         }
 
         public List<CarHeaderVm> GetAllCars()
         {
-
             var brand = db.Brands;
             var model = db.CarModels;
             var car = db.Cars;
@@ -121,6 +178,7 @@ namespace DataAccess
                                 on c.BrandId equals b.Id
                             join p in petrol
                                 on c.PetrolTypeId equals p.Id
+                            orderby c.Id descending
                             select new CarHeaderVm
                             {
                                 CarId = c.Id,
@@ -158,8 +216,8 @@ namespace DataAccess
         public List<CarModel> GetCarModelsByBrandId(int id)
         {
             var models = (from m in db.CarModels
-                where m.BrandId == id
-                select m).ToList();
+                          where m.BrandId == id
+                          select m).ToList();
 
             return models;
         }
@@ -167,7 +225,7 @@ namespace DataAccess
         public List<PetrolType> GetPetrolType()
         {
             var petrol = (from p in db.PetrolTypes
-                select p).ToList();
+                          select p).ToList();
 
             return petrol;
         }

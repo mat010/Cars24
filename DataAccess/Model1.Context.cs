@@ -35,5 +35,6 @@ namespace DataAccess
         public virtual DbSet<TechnicalCondition> TechnicalConditions { get; set; }
         public virtual DbSet<Transmission> Transmissions { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<XrefUserCar> XrefUserCars { get; set; }
     }
 }

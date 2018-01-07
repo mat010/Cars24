@@ -51,7 +51,6 @@ namespace WebDomain.Controllers
                           select new CarModelViewModel { Id = m.Id, ModelName = m.CarModelName }).ToList();
 
             return Json(models, JsonRequestBehavior.AllowGet);
-
         }
 
         public JsonResult GetBrands()
