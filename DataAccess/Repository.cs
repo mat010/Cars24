@@ -200,6 +200,7 @@ namespace DataAccess
         public List<Brand> GetAllMarks()
         {
             var brands = (from b in db.Brands
+                          orderby b.BrandName
                           select b).ToList();
 
             return brands;

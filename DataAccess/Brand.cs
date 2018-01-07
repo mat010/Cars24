@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace DataAccess
 {
     using System;
@@ -20,7 +22,6 @@ namespace DataAccess
             this.Cars = new HashSet<Car>();
             this.CarModels = new HashSet<CarModel>();
         }
-    
         public int Id { get; set; }
         public string BrandName { get; set; }
     
