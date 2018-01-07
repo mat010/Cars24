@@ -70,7 +70,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <h3 style="margin-top: 11px">
-                                    @Html.ActionLink($"{Html.DisplayFor(modelItem => item.Brand)} {Html.DisplayFor(modelItem => item.Model)}", "Details", new { id = item.Id })
+                                    @Html.ActionLink($"{Html.DisplayFor(modelItem => item.Brand)} {Html.DisplayFor(modelItem => item.Model)}", "Details", new { id = item.CarId })
                                 </h3>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -156,6 +156,36 @@
                     $('#ddlTransmissionType').append("<option value='-1'>--Chose transmission--</option>");
                     $.each(result, function (index, optiondata) {
                         $('#ddlTransmissionType').append("<option value='" + optiondata.Id + "'>" + optiondata.TransmissionName + "</option>");
+                    });
+                }
+            });
+        });
+
+        $('#btnModal').click(function () {
+            $('#ddlBodyName').empty();
+            $.ajax({
+                type: 'GET',
+                url: '/Home/GetBodyType',
+                success: function (result) {
+                    console.log(result);
+                    $('#ddlBodyName').append("<option value='-1'>--Chose body--</option>");
+                    $.each(result, function (index, optiondata) {
+                        $('#ddlBodyName').append("<option value='" + optiondata.Id + "'>" + optiondata.BodyName + "</option>");
+                    });
+                }
+            });
+        });
+
+        $('#btnModal').click(function () {
+            $('#ddlCondition').empty();
+            $.ajax({
+                type: 'GET',
+                url: '/Home/GetCondition',
+                success: function (result) {
+                    console.log(result);
+                    $('#ddlCondition').append("<option value='-1'>--Chose technical condition--</option>");
+                    $.each(result, function (index, optiondata) {
+                        $('#ddlCondition').append("<option value='" + optiondata.Id + "'>" + optiondata.ConditionName + "</option>");
                     });
                 }
             });

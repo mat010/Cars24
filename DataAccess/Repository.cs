@@ -50,7 +50,7 @@ namespace DataAccess
                                  where c.Id == id
                                  select new CarDetailsVM
                                  {
-                                     Id = d.Id,
+                                     CarDetailId = d.Id,
                                      CarId = c.Id,
                                      Brand = b.BrandName,
                                      Model = m.CarModelName,
@@ -71,6 +71,22 @@ namespace DataAccess
                 ).FirstOrDefault();
                 return carDetail;
             }
+        }
+
+        public ICollection<TechnicalCondition> GetCondition()
+        {
+            var condition = (from c in db.TechnicalConditions
+                select c).ToList();
+
+            return condition;
+        }
+
+        public ICollection<Body> GetBodyType()
+        {
+            var body = (from b in db.Bodies
+                select b).ToList();
+
+            return body;
         }
 
         public ICollection<Transmission> GetTransmissionType()
@@ -107,7 +123,7 @@ namespace DataAccess
                                 on c.PetrolTypeId equals p.Id
                             select new CarHeaderVm
                             {
-                                Id = c.Id,
+                                CarId = c.Id,
                                 Brand = b.BrandName,
                                 Model = m.CarModelName,
                                 Price = c.Price,

@@ -77,5 +77,21 @@ namespace WebDomain.Controllers
 
             return Json(transmission, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetBodyType()
+        {
+            var body = (from b in repository.GetBodyType()
+                select new BodyViewModel { Id = b.Id, BodyName = b.BodyName }).ToList();
+
+            return Json(body, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCondition()
+        {
+            var condition = (from c in repository.GetCondition()
+                select new TechnicalConditionViewModel { Id = c.Id, ConditionName = c.ConditionName }).ToList();
+
+            return Json(condition, JsonRequestBehavior.AllowGet);
+        }
     }
 }
