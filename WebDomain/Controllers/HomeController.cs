@@ -17,7 +17,7 @@ namespace WebDomain.Controllers
         {
             repository = new Repository();
             validate = new Validation();
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
         }
 
         public ActionResult Index()
