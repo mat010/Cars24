@@ -14,6 +14,9 @@
                 <a href="#" class="close" data-dismiss="modal">&times;</a>
                 <h3 class="modal-title">Nowe ogłoszenie</h3>
             </div>
+            <div id="imgLoader" style="display: none; align-content: center">
+                <img src="~/Images/ajax-loader.gif" />
+            </div>
             <div class="modal-body">
                 <form id="myForm">
                     Brand <select name="BrandId" id="ddlBrand"></select>
@@ -91,6 +94,7 @@
 <script>
     $(document).ready(function () {
         $('#ddlBrand').change(function () {
+            $('#imgLoader').show();
             $('#ddlModel').empty();
             var brandId = $(this).val();
             console.log(brandId);
@@ -108,14 +112,21 @@
                         $.each(result, function (index, optiondata) {
                             $('#ddlModel').append("<option value='" + optiondata.Id + "'>" + optiondata.ModelName + "</option>");
                         });
+                        $('#imgLoader').hide();
                     }
                 });
             }
         });
 
         $('#btnModal').click(function () {
+            $('#imgLoader').show();
             $('#ddlBrand').empty();
             $('#ddlModel').empty();
+            $('#ddlPetrolType').empty();
+            $('#ddlTransmissionType').empty();
+            $('#ddlBodyName').empty();
+            $('#ddlCondition').empty();
+
             $.ajax({
                 type: 'GET',
                 url: '/Home/GetBrands',
@@ -129,10 +140,7 @@
                     });
                 }
             });
-        });
 
-        $('#btnModal').click(function () {
-            $('#ddlPetrolType').empty();
             $.ajax({
                 type: 'GET',
                 url: '/Home/GetPetrolType',
@@ -144,10 +152,7 @@
                     });
                 }
             });
-        });
 
-        $('#btnModal').click(function () {
-            $('#ddlTransmissionType').empty();
             $.ajax({
                 type: 'GET',
                 url: '/Home/GetTransmissionType',
@@ -159,10 +164,7 @@
                     });
                 }
             });
-        });
 
-        $('#btnModal').click(function () {
-            $('#ddlBodyName').empty();
             $.ajax({
                 type: 'GET',
                 url: '/Home/GetBodyType',
@@ -174,10 +176,7 @@
                     });
                 }
             });
-        });
 
-        $('#btnModal').click(function () {
-            $('#ddlCondition').empty();
             $.ajax({
                 type: 'GET',
                 url: '/Home/GetCondition',
@@ -187,6 +186,7 @@
                     $.each(result, function (index, optiondata) {
                         $('#ddlCondition').append("<option value='" + optiondata.Id + "'>" + optiondata.ConditionName + "</option>");
                     });
+                    $('#imgLoader').hide();
                 }
             });
         });
