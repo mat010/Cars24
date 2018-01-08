@@ -1,0 +1,6 @@
+﻿.customModal {
+  width: 1000px; /* desired relative width */
+  /* place center */
+  margin-left:auto;
+  margin-right:auto; 
+}

@@ -1,16 +1,16 @@
 ﻿<div class="modal fade" id="myModal">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content customModal">
             <div class="modal-header">
                 <a href="#" class="close" data-dismiss="modal">&times;</a>
                 <h3 class="modal-title">Nowe ogłoszenie</h3>
-            </div>
-            <div id="imgLoader" style="display: none; text-align: center">
-                <img src="~/Images/ajax-loader.gif" />
+                <div id="imgLoader" style="display: none; text-align: center">
+                    <img src="~/Images/ajax-loader.gif" />
+                </div>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6" style="border: 1px solid black">
                         <form id="myForm" class="form-horizontal">
                             <div class="form-group">
                                 <label for="BrandId" class="col-sm-3">Brand:</label>
@@ -104,7 +104,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6" style="border: 1px solid black">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="btn btn-primary">
@@ -120,7 +120,7 @@
                                     <a href="#" class="btn btn-default" onclick="UploadImage()">Upload</a>
                                 </div>
                             </div>
-                            <div class="col-md-8 thumbnail" id="uploadedImage"></div>
+                            <div class="col-md-8 thumbnail" id="uploadedImage" style="display: none"></div>
                         </div>
                     </div>
                 </div>

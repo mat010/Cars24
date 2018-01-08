@@ -162,6 +162,7 @@ var UploadImage = function () {
         contentType: false,
         processData: false,
         success: function (response) {
+            $('#uploadedImage').show();
             $('#uploadedImage').append('<img src="' + response.Message + '" class="img-responsive thumbnail" />');
         }
     })
