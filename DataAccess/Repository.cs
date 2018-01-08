@@ -72,8 +72,20 @@ namespace DataAccess
                                      Phone = u.Phone
                                  }
                 ).FirstOrDefault();
+                if (carDetail != null)
+                {
+                    carDetail.imgList = GetImagesForCarDetails(carDetail.CarDetailId);
+                }
                 return carDetail;
             }
+        }
+
+        private List<string> GetImagesForCarDetails(int carDetailId)
+        {
+            var pictures = (from pic in db.Pictures
+                            where pic.CarDetailsId == carDetailId
+                            select pic.PicturePath).ToList();
+            return pictures;
         }
 
         public ICollection<TechnicalCondition> GetCondition()
@@ -127,6 +139,24 @@ namespace DataAccess
                 });
 
                 db.SaveChanges();
+
+                if (carDetailsVm.imgList != null)
+                {
+                    db.Pictures.Add(new Picture
+                    {
+                        CarId = carHeader.Id,
+                        PicturePath = carDetailsVm.imgList.FirstOrDefault()
+                    });
+
+                    foreach (var pic in carDetailsVm.imgList)
+                    {
+                        db.Pictures.Add(new Picture
+                        {
+                            CarDetailsId = carDetail.Id,
+                            PicturePath = pic
+                        });
+                    }
+                }
 
                 var user = GetUserByEmail(carDetailsVm.Email);
                 if (user == null)

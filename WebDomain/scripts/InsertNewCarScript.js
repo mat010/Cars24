@@ -97,7 +97,7 @@ $('#btnModal').click(function () {
 });
 
 $('#btnSubmit').click(function () {
-    var myFormData = $('#myForm').serialize();
+    //var myFormData = $('#myForm').serialize();
     var carAdvert = {
         BrandId:  $('select[name=BrandId]').val(),
         ModelId: $('select[name=ModelId]').val(),
@@ -115,14 +115,14 @@ $('#btnSubmit').click(function () {
         Phone: $('input[name=Phone]').val(),
         UserName: $('input[name=UserName]').val()
     };
-    console.log(carAdvert);
+    //console.log(carAdvert);
     carAdvert.imgList = [];
     $('#uploadedImage').children('img').each(function () {
-        console.log($(this).attr('src'));
+        //console.log($(this).attr('src'));
         var imgPath = $(this).attr('src');
         carAdvert.imgList.push(imgPath);
     });
-    console.log(carAdvert);
+    //console.log(carAdvert);
 
     $.ajax({
         type: 'POST',
