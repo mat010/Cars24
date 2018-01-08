@@ -1,6 +1,9 @@
-﻿.customModal {
-  width: 1000px; /* desired relative width */
-  /* place center */
+﻿.modal-custom-content {
+  width: 80%; 
   margin-left:auto;
   margin-right:auto; 
+}
+
+.modal-custom-dialog {
+    width: auto;
 }

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 
 namespace DataAccess
 {
@@ -15,5 +16,6 @@ namespace DataAccess
         public int TransmissionTypeId { get; set; }
         public string UserName { get; set; }
         public int CarDetailId { get; set; }
+        public List<string> imgList { get; set; }
     }
 }

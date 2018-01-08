@@ -98,9 +98,35 @@ $('#btnModal').click(function () {
 
 $('#btnSubmit').click(function () {
     var myFormData = $('#myForm').serialize();
+    var carAdvert = {
+        BrandId:  $('select[name=BrandId]').val(),
+        ModelId: $('select[name=ModelId]').val(),
+        Price: $('input[name=Price]').val(),
+        City: $('input[name=City]').val(),
+        ProductYear: $('input[name=ProductYear]').val(),
+        Distance: $('input[name=Distance]').val(),
+        Capacity: $('input[name=Capacity]').val(),
+        PetrolTypeId: $('select[name=PetrolTypeId]').val(),
+        TransmissionTypeId: $('select[name=TransmissionTypeId]').val(),
+        BodyId: $('select[name=BodyId]').val(),
+        ConditionId: $('select[name=ConditionId]').val(),
+        Description: $('textarea[name=Description]').val(),
+        Email: $('input[name=Email]').val(),
+        Phone: $('input[name=Phone]').val(),
+        UserName: $('input[name=UserName]').val()
+    };
+    console.log(carAdvert);
+    carAdvert.imgList = [];
+    $('#uploadedImage').children('img').each(function () {
+        console.log($(this).attr('src'));
+        var imgPath = $(this).attr('src');
+        carAdvert.imgList.push(imgPath);
+    });
+    console.log(carAdvert);
+
     $.ajax({
         type: 'POST',
-        data: myFormData,
+        data: carAdvert,
         url: '/Home/Insert',
         success: function (result) {
             //console.log(myFormData);
@@ -154,7 +180,6 @@ var UploadImage = function () {
     var file = $('#imgBrowes').get(0).files;
     var data = new FormData;
     data.append('imgFile', file[0]);
-    //data.append('ProductName', 'Samsung');
     $.ajax({
         type: 'POST',
         url: '/Home/UploadImage',
