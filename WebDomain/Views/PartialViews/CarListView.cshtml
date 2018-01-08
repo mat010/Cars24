@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DataAccess.CarHeaderVm>
+<div style="padding: 20px 0; width: 100%">
+    <ul class="list-unstyled">
+        @foreach (var item in Model)
+        {
+            <br />
+            <li>
+                <div class="row" style="border: 1px solid lightgrey; padding: 5px; border-radius: 6px">
+                    <div class="col-sm-2">
+                        <img src="~/Images/obraz.jpg" alt="Image here" style="height: 110px; width: auto; margin: -5px 0 -5px -20px; border-top-left-radius: 6px; border-bottom-left-radius: 6px">
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h3 style="margin-top: 11px">
+                                    @Html.ActionLink($"{Html.DisplayFor(modelItem => item.Brand)} {Html.DisplayFor(modelItem => item.Model)}", "Details", new { id = item.CarId })
+                                </h3>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h4>Cena: @Html.DisplayFor(modelItem => item.Price) zł </h4>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4 style="float: right"> <span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.City)</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
