@@ -174,12 +174,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BodyViewModel.cs" />
-    <Compile Include="Controllers\CarModelViewModel.cs" />
+    <Compile Include="Helpers\UploadFile.cs" />
+    <Compile Include="Models\BodyViewModel.cs" />
+    <Compile Include="Models\CarModelViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PetrolViewModel.cs" />
-    <Compile Include="Controllers\TechnicalConditionViewModel.cs" />
-    <Compile Include="Controllers\TransmissionViewModel.cs" />
+    <Compile Include="Models\ImgFileVM.cs" />
+    <Compile Include="Models\PetrolViewModel.cs" />
+    <Compile Include="Models\TechnicalConditionViewModel.cs" />
+    <Compile Include="Models\TransmissionViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">

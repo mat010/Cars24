@@ -5,6 +5,10 @@ using System.Web.Mvc;
 using BusinessLogic;
 using DataAccess;
 using WebDomain.Models;
+using System.IO;
+using System;
+using WebDomain.Helpers;
+using System.Web;
 
 namespace WebDomain.Controllers
 {
@@ -33,6 +37,21 @@ namespace WebDomain.Controllers
         }
 
         [HttpPost]
+        public JsonResult UploadImage(HttpPostedFileWrapper imgFile)
+        {
+            if (imgFile != null)
+            {
+                var img = Path.GetFileNameWithoutExtension(imgFile.FileName);
+                var imgExtension = Path.GetExtension(imgFile.FileName);
+                var newFileImgNameBaseOnCurrentTime = $"{img}_{DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond}{imgExtension}";
+                var fullPath = $"/UploadedImages/{newFileImgNameBaseOnCurrentTime}";
+                imgFile.SaveAs(Server.MapPath(fullPath));
+                return Json(new { Success = true, Message = fullPath }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Success = false, Message = "Cannot save file to the server" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult Insert(CarDetailsVM carDetailsVm)
         {
             if (validate.IsModelValid(carDetailsVm))
@@ -58,7 +77,7 @@ namespace WebDomain.Controllers
         public JsonResult GetBrands()
         {
             var brands = (from b in repository.GetAllMarks()
-            select new BrandViewModel { Id = b.Id, BrandName = b.BrandName }).ToList();
+                          select new BrandViewModel { Id = b.Id, BrandName = b.BrandName }).ToList();
 
             return Json(brands, JsonRequestBehavior.AllowGet);
         }
@@ -66,7 +85,7 @@ namespace WebDomain.Controllers
         public JsonResult GetPetrolType()
         {
             var petrol = (from p in repository.GetPetrolType()
-                select new PetrolViewModel { Id = p.Id, PetrolName = p.PetrolName }).ToList();
+                          select new PetrolViewModel { Id = p.Id, PetrolName = p.PetrolName }).ToList();
 
             return Json(petrol, JsonRequestBehavior.AllowGet);
         }
@@ -74,7 +93,7 @@ namespace WebDomain.Controllers
         public JsonResult GetTransmissionType()
         {
             var transmission = (from t in repository.GetTransmissionType()
-                select new TransmissionViewModel { Id = t.Id, TransmissionName = t.TransmissionName }).ToList();
+                                select new TransmissionViewModel { Id = t.Id, TransmissionName = t.TransmissionName }).ToList();
 
             return Json(transmission, JsonRequestBehavior.AllowGet);
         }
@@ -82,7 +101,7 @@ namespace WebDomain.Controllers
         public JsonResult GetBodyType()
         {
             var body = (from b in repository.GetBodyType()
-                select new BodyViewModel { Id = b.Id, BodyName = b.BodyName }).ToList();
+                        select new BodyViewModel { Id = b.Id, BodyName = b.BodyName }).ToList();
 
             return Json(body, JsonRequestBehavior.AllowGet);
         }
@@ -90,7 +109,7 @@ namespace WebDomain.Controllers
         public JsonResult GetCondition()
         {
             var condition = (from c in repository.GetCondition()
-                select new TechnicalConditionViewModel { Id = c.Id, ConditionName = c.ConditionName }).ToList();
+                             select new TechnicalConditionViewModel { Id = c.Id, ConditionName = c.ConditionName }).ToList();
 
             return Json(condition, JsonRequestBehavior.AllowGet);
         }

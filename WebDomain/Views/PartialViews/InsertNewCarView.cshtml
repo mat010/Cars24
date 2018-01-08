@@ -9,51 +9,121 @@
                 <img src="~/Images/ajax-loader.gif" />
             </div>
             <div class="modal-body">
-                <form id="myForm">
-                    Brand <select name="BrandId" id="ddlBrand"></select>
-                    <br />
-                    Model <select name="ModelId" id="ddlModel"></select>
-                    <br />
-                    Price <input type="number" name="Price" />
-                    <br />
-                    City <input type="text" name="City" />
-                    <br />
-                    ProductYear <input type="number" name="ProductYear" />
-                    <br />
-                    Distance <input type="number" name="Distance" />
-                    <br />
-                    Capacity <input type="number" name="Capacity" />
-                    <br />
-                    PetrolType <select name="PetrolTypeId" id="ddlPetrolType"></select>
-                    <br />
-                    TransmissionType <select name="TransmissionTypeId" id="ddlTransmissionType"></select>
-                    <br />
-                    BodyName <select name="BodyId" id="ddlBodyName"></select>
-                    <br />
-                    Condition <select name="ConditionId" id="ddlCondition"></select>
-                    <br />
-                    Description <textarea name="Description" rows="10"></textarea>
-                    <br />
-                    Email <input type="email" name="Email" />
-                    <br />
-                    Phone <input type="text" name="Phone" />
-                    <br />
-                    UserName <input type="text" name="UserName" />
-                    <br />
-                    <div class="col-md-4">
-                        <div class="btn btn-primary">
-                            <input type="file" id="imgBrowes" />
-                        </div>
-                        <hr />
-                        <div id="imgPreview" class="thumbnail" style="display: none">
-                            <img class="img-responsive" id="targetImg"/>
-                            <div class="caption">
-                                <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                                <span id="descriptionImg"></span>
+                <div class="row">
+                    <div class="col-md-8">
+                        <form id="myForm" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="BrandId" class="col-sm-3">Brand:</label>
+                                <div class="col-sm-4">
+                                    <select name="BrandId" id="ddlBrand"></select>
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label for="ModelId" class="col-sm-3">Model:</label>
+                                <div class="col-sm-4">
+                                    <select name="ModelId" id="ddlModel"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Price" class="col-sm-3">Price:</label>
+                                <div class="col-sm-4">
+                                    <input type="number" name="Price" placeholder="Price here" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="City" class="col-sm-3">City:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" name="City" placeholder="City here" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ProductYear" class="col-sm-3">Product year:</label>
+                                <div class="col-sm-4">
+                                    <input type="number" name="ProductYear" placeholder="Product year here" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Distance" class="col-sm-3">Distance:</label>
+                                <div class="col-sm-4">
+                                    <input type="number" name="Distance" placeholder="Distance here" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Capacity" class="col-sm-3">Capacity:</label>
+                                <div class="col-sm-4">
+                                    <input type="number" name="Capacity" placeholder="Capacity here" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="PetrolTypeId" class="col-sm-3">Petrol type:</label>
+                                <div class="col-sm-4">
+                                    <select name="PetrolTypeId" id="ddlPetrolType"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="TransmissionTypeId" class="col-sm-3">Transmission type:</label>
+                                <div class="col-sm-4">
+                                    <select name="TransmissionTypeId" id="ddlTransmissionType"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BodyId" class="col-sm-3">Body type:</label>
+                                <div class="col-sm-4">
+                                    <select name="BodyId" id="ddlBodyName"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ConditionId" class="col-sm-3">Condition:</label>
+                                <div class="col-sm-4">
+                                    <select name="ConditionId" id="ddlCondition"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Description" class="col-sm-3">Description:</label>
+                                <div class="col-sm-4">
+                                    <textarea name="Description" rows="10" placeholder="Put some words about item"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Email" class="col-sm-3">Email:</label>
+                                <div class="col-sm-4">
+                                    <input type="email" name="Email" placeholder="Email here" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Phone" class="col-sm-3">Phone:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" name="Phone" placeholder="Phone number here" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="UserName" class="col-sm-3">User name:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" name="UserName" placeholder="Your name here" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="btn btn-primary">
+                                    <input type="file" id="imgBrowes" />
+                                </div>
+                                <hr />
+                                <div id="imgPreview" class="thumbnail" style="display: none">
+                                    <img class="img-responsive" id="targetImg" />
+                                    <div class="caption">
+                                        <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                                        <span id="descriptionImg"></span>
+                                    </div>
+                                    <a href="#" class="btn btn-default" onclick="UploadImage()">Upload</a>
+                                </div>
+                            </div>
+                            <div class="col-md-8 thumbnail" id="uploadedImage"></div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="modal-footer">
                 <a href="#" id="btnSubmit" class="btn btn-success">Submit</a>

@@ -149,3 +149,20 @@ var ClearPreview = function () {
     $('#descriptionImg').text('');
     $('#imgPreview').hide();
 }
+
+var UploadImage = function () {
+    var file = $('#imgBrowes').get(0).files;
+    var data = new FormData;
+    data.append('imgFile', file[0]);
+    //data.append('ProductName', 'Samsung');
+    $.ajax({
+        type: 'POST',
+        url: '/Home/UploadImage',
+        data: data,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            $('#uploadedImage').append('<img src="' + response.Message + '" class="img-responsive thumbnail" />');
+        }
+    })
+}
