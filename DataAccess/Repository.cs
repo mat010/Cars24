@@ -197,6 +197,7 @@ namespace DataAccess
             var model = db.CarModels;
             var car = db.Cars;
             var petrol = db.PetrolTypes;
+            var picture = db.Pictures;
 
             using (db = new CarDBEntities1())
             {
@@ -208,6 +209,10 @@ namespace DataAccess
                                 on c.BrandId equals b.Id
                             join p in petrol
                                 on c.PetrolTypeId equals p.Id
+                            join pic in picture
+                            on c.Id equals pic.CarId
+                            into g
+                            from result in g.DefaultIfEmpty()
                             orderby c.Id descending
                             select new CarHeaderVm
                             {
@@ -219,7 +224,8 @@ namespace DataAccess
                                 Capacity = c.Capacity,
                                 Distance = c.Distance,
                                 ProductYear = c.Year,
-                                PetrolType = p.PetrolName
+                                PetrolType = p.PetrolName,
+                                HeaderPicture = result.PicturePath
                             }
                 ).ToList();
 

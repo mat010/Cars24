@@ -22,5 +22,6 @@ namespace DataAccess
         public string PetrolType { get; set; }
         public int PetrolTypeId { get; set; }
         public int CarId { get; set; }
+        public string HeaderPicture { get; internal set; }
     }
 }
