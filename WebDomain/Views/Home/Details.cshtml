@@ -51,18 +51,32 @@
                     </ol>
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        @for (int i=0; i< Model.imgList.Count; i++)
+                        @for (int i = 0; i < Model.imgList.Count; i++)
                         {
                             if (i == 0)
                             {
                                 <div class="item active">
-                                    <img class="img-responsive" src=@Url.Content($"~{Model.imgList[i]}") alt="">
+                                    @if (String.IsNullOrEmpty(Model.imgList[i]))
+                                    {
+                                        <img class="img-responsive" src="~/Images/default-display-image-car.png" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img class="img-responsive" src=@Url.Content($"~{Model.imgList[i]}") alt="">
+                                    }
                                 </div>
                             }
                             else
                             {
                                 <div class="item">
-                                    <img class="img-responsive" src=@Url.Content($"~{Model.imgList[i]}") alt="">
+                                    @if (String.IsNullOrEmpty(Model.imgList[i]))
+                                    {
+                                        <img class="img-responsive" src="~/Images/default-display-image-car.png" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img class="img-responsive" src=@Url.Content($"~{Model.imgList[i]}") alt="">
+                                    }
                                 </div>
                             }
                         }
@@ -81,8 +95,8 @@
             </div>
             <div class="col-sm-3">
 
-                <h1><span class="label label-default">@Html.DisplayFor(model => model.Price) zł</span></h1><br/>
-                
+                <h1><span class="label label-default">@Html.DisplayFor(model => model.Price) zł</span></h1><br />
+
 
 
                 <div class="well">
@@ -92,7 +106,7 @@
                     <p><i class="glyphicon glyphicon-envelope"></i> @Html.DisplayFor(model => model.Email)</p>
                     <p><i class="glyphicon glyphicon-map-marker"></i> @Html.DisplayFor(model => model.City)</p>
                 </div>
-                </div>
+            </div>
         </div>
 
         <div class="row">
