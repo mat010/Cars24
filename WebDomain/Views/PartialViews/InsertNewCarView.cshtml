@@ -9,146 +9,122 @@
                 </div>
             </div>
             <div class="modal-body">
+                <div class="row" style="margin: 0 auto 0 40px">
+                    <form id="myForm" class="form-horizontal">
+                        <div class="col-md-4">
+                            @*<div style="margin: 20px">*@
+
+                            <div class="form-group">
+                                <label for="BrandId">Marka:</label>
+                                <select class="form-control" name="BrandId" id="ddlBrand"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ModelId">Model:</label>
+                                <select class="form-control" name="ModelId" id="ddlModel"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ProductYear">Rok produkcji:</label>
+                                <input class="form-control" type="number" name="ProductYear" placeholder="Product year here" />
+                            </div>
+                            <div class="form-group">
+                                <label for="Distance">Przebieg:</label>
+                                <input class="form-control" type="number" name="Distance" placeholder="Distance here" />
+                            </div>
+                            <div class="form-group">
+                                <label for="Capacity">Pojemność:</label>
+                                <input class="form-control" type="number" name="Capacity" placeholder="Capacity here" />
+                            </div>
+                            <div class="form-group">
+                                <label for="PetrolTypeId">Rodzaj paliwa:</label>
+                                <select class="form-control" name="PetrolTypeId" id="ddlPetrolType"></select>
+                            </div>
+                            <div class="form-group">
+                                <input type="file" id="imgBrowes" class="form-control" />
+                            </div>
+
+                            @*</div>*@
+                        </div>
+                        <div class="col-md-8">
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        @*<div style="margin: 20px">*@
+
+                                        <div class="form-group">
+                                            <label for="ConditionId">Stan techniczny:</label>
+                                            <select class="form-control" name="ConditionId" id="ddlCondition"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="TransmissionTypeId">Skrzynia biegów:</label>
+                                            <select class="form-control" name="TransmissionTypeId" id="ddlTransmissionType"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="BodyId">Rodzaj nadwozia:</label>
+                                            <select class="form-control" name="BodyId" id="ddlBodyName"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Price">Cena:</label>
+                                            <input class="form-control" type="number" name="Price" placeholder="Price here" />
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        @*<div style="margin: 20px">*@
+                                        <div class="form-group">
+                                            <label for="UserName">Twoje imię:</label>
+                                            <input class="form-control" type="text" name="UserName" placeholder="Your name here" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Phone">Nr telefonu:</label>
+                                            <input class="form-control" type="text" name="Phone" placeholder="Phone number here" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Email">Email:</label>
+                                            <input class="form-control" type="email" name="Email" placeholder="Email here" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="City">Miejscowość:</label>
+                                            <input class="form-control" type="text" name="City" placeholder="City here" />
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="Description">Opis pojazdu:</label>
+                                            <textarea class="form-control" name="Description" rows="7" placeholder="Put some words about item" style="resize: none; min-width: 89%"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <hr />
                 <div class="row">
                     <div class="col-md-4">
-                        <form id="myForm" class="form-horizontal">
-
-                            <div style="margin: 20px">
-
-
-
-                                <div class="form-group">
-                                    <label for="BrandId">Marka:</label>
-                                    <select class="form-control" name="BrandId" id="ddlBrand"></select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="ModelId">Model:</label>
-                                    <select class="form-control" name="ModelId" id="ddlModel"></select>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="ProductYear">Rok produkcji:</label>
-                                        <input class="form-control" type="number" name="ProductYear" placeholder="Product year here" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="Distance">Przebieg:</label>
-                                        <input class="form-control" type="number" name="Distance" placeholder="Distance here" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="Capacity">Pojemność:</label>
-                                        <input class="form-control" type="number" name="Capacity" placeholder="Capacity here" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="PetrolTypeId">Rodzaj paliwa:</label>
-                                        <select class="form-control" name="PetrolTypeId" id="ddlPetrolType"></select>
-                                </div>
-
+                        <div id="imgPreview" class="thumbnail" style="display: none">
+                            <img class="img-responsive" id="targetImg" style="height: 100px; width: auto" />
+                            <div class="caption">
+                                <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                                <span id="descriptionImg"></span>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-md-4">
-
-
-                        <div style="margin: 20px">
-
-
-                            <div class="form-group">
-                                <label for="ConditionId">Stan techniczny:</label>
-                                <select class="form-control" name="ConditionId" id="ddlCondition"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="TransmissionTypeId">Skrzynia biegów:</label>
-                                <select class="form-control" name="TransmissionTypeId" id="ddlTransmissionType"></select>
-                            </div>
-                            <div class="form-group">
-                                <label for="BodyId">Rodzaj nadwozia:</label>
-                                <select class="form-control" name="BodyId" id="ddlBodyName"></select>
-                            </div>
-
-                           
-                            <div class="form-group">
-                                <label for="Description">Opis pojazdu:</label>
-                                <textarea class="form-control" name="Description" rows="7" placeholder="Put some words about item" style="resize: none; width: 100%"></textarea>
-                            </div>
-
+                            <a href="#" class="btn btn-default" onclick="UploadImage()"><i class="glyphicon glyphicon-cloud-upload"></i> Upload</a>
                         </div>
-
                     </div>
-
-
-
-                    <div class="col-md-4">
-
-
-                        <div style="margin: 20px">
-
-                            <div class="form-group">
-                                <label for="UserName">Twoje imię:</label>
-                                <input class="form-control" type="text" name="UserName" placeholder="Your name here"/>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="Phone">Nr telefonu:</label>
-                                <input class="form-control" type="text" name="Phone" placeholder="Phone number here" />
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="Email">Email:</label>
-                                <input class="form-control" type="email" name="Email" placeholder="Email here" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="City">Miejscowość:</label>
-                                <input class="form-control" type="text" name="City" placeholder="City here" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Price">Cena:</label>
-                                <input class="form-control" type="number" name="Price" placeholder="Price here" />
-                            </div>
-
-                        </div>
-
+                    <div class="col-md-8">
+                        <div class="img-responsive row" id="uploadedImage"></div>
                     </div>
-
-
-
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-
-                                <div class="col-md-4">
-
-                                    <div class="btn btn-primary">
-                                        <input type="file" id="imgBrowes" />
-                                    </div>
-                                    <hr />
-                                    <div id="imgPreview" class="thumbnail" style="display: none">
-                                        <img class="img-responsive" id="targetImg" style="height: 100px; width: auto" />
-                                        <div class="caption">
-                                            <a href="#" onclick=" ClearPreview() "><i class="glyphicon glyphicon-trash"></i></a>
-                                            <span id="descriptionImg"></span>
-                                        </div>
-                                        <a href="#" class="btn btn-default" onclick=" UploadImage() "><i class="glyphicon glyphicon-cloud-upload"></i> Upload</a>
-                                    </div>
-
-                                </div>
-                                    <div class="col-md-8">
-                                        <div class="img-responsive" id="uploadedImage" style="max-width: 150px"></div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
                 </div>
             </div>
             <div class="modal-footer">
@@ -158,5 +134,4 @@
         </div>
     </div>
 </div>
-
 <script src="~/scripts/InsertNewCarScript.js"></script>

@@ -186,9 +186,9 @@ var UploadImage = function () {
         data: data,
         contentType: false,
         processData: false,
-        success: function (response) {
+        success: function(response) {
             $('#uploadedImage').show();
-            $('#uploadedImage').append('<img src="' + response.Message + '" class="img-responsive thumbnail" />');
+            $('#uploadedImage').append('<img src="' + response.Message + '" class="img-responsive thumbnail col-md-4" />');
         }
-    })
+    });
 }
