@@ -245,6 +245,7 @@ namespace DataAccess
         public List<CarModel> GetAllCarModels()
         {
             var models = (from m in db.CarModels
+                          orderby m.CarModelName
                           select m).ToList();
 
             return models;
