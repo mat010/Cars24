@@ -1,33 +1,52 @@
 ﻿@model IEnumerable<DataAccess.CarHeaderVm>
-<div style="padding: 20px 0; width: 100%">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div style="width: 100%">
     <ul class="list-unstyled">
         @foreach (var item in Model)
         {
-            <br />
             <li>
-                <div class="row" style="border: 1px solid lightgrey; padding: 5px; border-radius: 6px">
-                    <div class="col-sm-2">
-                        <img src="~/Images/obraz.jpg" alt="Image here" style="height: 110px; width: auto; margin: -5px 0 -5px -20px; border-top-left-radius: 6px; border-bottom-left-radius: 6px">
+            
+                <div class="row" style="margin-top: 25px; box-shadow: 0 3px 30px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                    <div class="col-md-3" style="padding-left: 0; padding-right: 0">
+                        <a href="#">
+                            <img class="img-responsive" src="~/Images/obraz.jpg" alt="">
+                        </a>
                     </div>
-                    <div class="col-sm-10">
+                    <div class="col-md-9">
+
                         <div class="row">
-                            <div class="col-sm-12">
-                                <h3 style="margin-top: 11px">
-                                    @Html.ActionLink($"{Html.DisplayFor(modelItem => item.Brand)} {Html.DisplayFor(modelItem => item.Model)}", "Details", new { id = item.CarId })
-                                </h3>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h4>Cena: @Html.DisplayFor(modelItem => item.Price) zł </h4>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <h4 style="float: right"> <span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.City)</h4>
-                                    </div>
-                                </div>
+                            <div class="col-md-9">
+                                <h3>@Html.ActionLink($"{Html.DisplayFor(modelItem => item.Brand)} {Html.DisplayFor(modelItem => item.Model)}", "Details", new { id = item.CarId })</h3>
+                                
+                            </div>
+                            <div class="col-md-3" style="text-align: right">
+                                <h3>@Html.DisplayFor(modelItem => item.Price) zł</h3>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ul class="list-inline" style="font-size: 16px">
+                                    <li>@Html.DisplayFor(modelItem => item.ProductYear)</li>
+                                    <li>@Html.DisplayFor(modelItem => item.Distance) km</li>
+                                    <li>@Html.DisplayFor(modelItem => item.Capacity) cm3</li>
+                                    <li>@Html.DisplayFor(modelItem => item.PetrolType)</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3" style="text-align: right; vertical-align: bottom">
+                                <br/><br /><br /><br /><h4><span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.City)</h4>
+                            </div>
+                        </div>
+                       
+
+                        
                     </div>
                 </div>
+                
+
             </li>
         }
     </ul>
 </div>
+
+
