@@ -112,6 +112,49 @@ namespace DataAccess
             return transmission;
         }
 
+        public List<CarHeaderVm> GetCarsByName(string search)
+        {
+            var brand = db.Brands;
+            var model = db.CarModels;
+            var car = db.Cars;
+            var petrol = db.PetrolTypes;
+            var picture = db.Pictures;
+
+            using (db = new CarDBEntities1())
+            {
+
+                var cars = (from c in car
+                            join m in model
+                                on c.CarModelId equals m.Id
+                            join b in brand
+                                on c.BrandId equals b.Id
+                            join p in petrol
+                                on c.PetrolTypeId equals p.Id
+                            join pic in picture
+                            on c.Id equals pic.CarId
+                            into g
+                            from result in g.DefaultIfEmpty()
+                            orderby c.Id descending
+                            where b.BrandName.StartsWith(search)
+                            select new CarHeaderVm
+                            {
+                                CarId = c.Id,
+                                Brand = b.BrandName,
+                                Model = m.CarModelName,
+                                Price = c.Price,
+                                City = c.City,
+                                Capacity = c.Capacity,
+                                Distance = c.Distance,
+                                ProductYear = c.Year,
+                                PetrolType = p.PetrolName,
+                                HeaderPicture = result.PicturePath
+                            }
+                ).ToList();
+
+                return cars;
+            }
+        }
+
         public bool Insert(CarDetailsVM carDetailsVm)
         {
             using (db = new CarDBEntities1())

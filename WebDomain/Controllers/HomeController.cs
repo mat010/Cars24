@@ -27,7 +27,9 @@ namespace WebDomain.Controllers
         public ActionResult Index()
         {
             var cars = repository.GetAllCars();
-            return View(cars);
+            ViewBag.carList = cars;
+
+            return View();
         }
 
         public ActionResult Details(int id)
@@ -112,6 +114,14 @@ namespace WebDomain.Controllers
                              select new TechnicalConditionViewModel { Id = c.Id, ConditionName = c.ConditionName }).ToList();
 
             return Json(condition, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SearchCar(string search)
+        {
+            var cars = repository.GetCarsByName(search);
+            ViewBag.carList = cars;
+            return Json(cars, JsonRequestBehavior.AllowGet);
         }
     }
 }

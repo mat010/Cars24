@@ -172,6 +172,7 @@
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.8.3.js" />
+    <Content Include="scripts\SearchCar.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
