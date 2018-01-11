@@ -114,6 +114,10 @@ namespace DataAccess
 
         public List<CarHeaderVm> GetCarsByName(string search)
         {
+            if (String.IsNullOrEmpty(search))
+            {
+                return GetAllCars();
+            }
             var brand = db.Brands;
             var model = db.CarModels;
             var car = db.Cars;
