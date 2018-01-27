@@ -26,15 +26,28 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i> Szukaj</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form class="navbar-form navbar-left">
+                                    <div class="form-group">
+                                        <input onkeyup=" Search(); " id="searchBox" class="form-control" type="text" placeholder="Szukana fraza..." aria-label="Search">
+                                    </div>
+                                </form>
+
+                            </li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="#" data-toggle="modal" data-target="#myModal" id="btnModal"><i class="glyphicon glyphicon-plus"></i> Dodaj ogłoszenie</a>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input onkeyup="Search();" id="searchBox" class="form-control" type="text" placeholder="Search car" aria-label="Search">
-                    </div>
-                </form>
+                
             </div>
             <!-- /.navbar-collapse -->
         </div>
