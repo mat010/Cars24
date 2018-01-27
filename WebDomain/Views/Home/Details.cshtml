@@ -104,7 +104,10 @@
                     <p align="center" style="font-size: 16px"> @Html.DisplayFor(model => model.UserName)</p><br />
                     <p><i class="glyphicon glyphicon-earphone"></i><a href="tel:@Html.DisplayFor(model => model.Phone)"> @Html.DisplayFor(model => model.Phone)</a></p>
                     <p><i class="glyphicon glyphicon-envelope"></i><a href="mailto:@Html.DisplayFor(model => model.Email)"> @Html.DisplayFor(model => model.Email)</a></p>
-                    <p><i class="glyphicon glyphicon-map-marker"></i> @Html.DisplayFor(model => model.City)</p>
+                    <p><i class="glyphicon glyphicon-map-marker"></i><a target="_blank" href="https://www.google.pl/maps/search/@Html.DisplayFor(model=>model.City)"> @Html.DisplayFor(model => model.City)</a></p>
+
+                    
+
                 </div>
             </div>
         </div>
