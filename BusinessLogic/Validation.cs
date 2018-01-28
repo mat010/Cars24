@@ -9,88 +9,127 @@ namespace BusinessLogic
 {
     public class Validation
     {
-        public bool IsModelValid(CarDetailsVM carDetailsVm)
+        public bool IsModelValid(CarDetailsVM carDetailsVm, out string validationMessageInputs)
         {
+            validationMessageInputs = string.Empty;
+            StringBuilder sb = new StringBuilder();
             if (carDetailsVm.imgList == null)
             {
-                return false;
+                sb.Append("At least one image is required\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (carDetailsVm.BodyId < 0)
             {
-                return false;
+                sb.Append(", Car body\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (carDetailsVm.BrandId < 0)
             {
-                return false;
+                sb.Append(", Brand\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (carDetailsVm.Capacity == null || carDetailsVm.Capacity < 500)
             {
-                return false;
+                sb.Append(", Capacity\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (string.IsNullOrEmpty(carDetailsVm.City))
             {
-                return false;
+                sb.Append(", City\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
             
             if (carDetailsVm.ConditionId < 0)
             {
-                return false;
+                sb.Append(", Condition\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (string.IsNullOrEmpty(carDetailsVm.Description))
             {
-                return false;
+                sb.Append(", Description\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (carDetailsVm.Distance == null || carDetailsVm.Distance < 100)
             {
-                return false;
+                sb.Append(", Distance\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (string.IsNullOrEmpty(carDetailsVm.Email))
             {
-                return false;
+                sb.Append(", Email\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (carDetailsVm.ModelId < 0)
             {
-                return false;
+                sb.Append(", Model\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (carDetailsVm.PetrolTypeId < 0)
             {
-                return false;
+                sb.Append(", Petrol type\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (string.IsNullOrEmpty(carDetailsVm.Phone))
             {
-                return false;
+                sb.Append(", Phone\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
-            if (carDetailsVm.Price < 0)
+            if (carDetailsVm.Price <= 0)
             {
-                return false;
+                sb.Append(", Price\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (carDetailsVm.ProductYear == null || carDetailsVm.ProductYear > DateTime.Now.Year)
             {
-                return false;
+                sb.Append(", Product year\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (carDetailsVm.TransmissionTypeId < 0)
             {
-                return false;
+                sb.Append(", Transmision type\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
 
             if (string.IsNullOrEmpty(carDetailsVm.UserName))
             {
-                return false;
+                sb.Append(", User name\n");
+                validationMessageInputs = sb.ToString();
+                //return false;
             }
-            return true;
+
+            if (string.IsNullOrEmpty(validationMessageInputs))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

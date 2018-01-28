@@ -56,7 +56,8 @@ namespace WebDomain.Controllers
         [HttpPost]
         public JsonResult Insert(CarDetailsVM carDetailsVm)
         {
-            if (validate.IsModelValid(carDetailsVm))
+            string validationMessageInputs = string.Empty;
+            if (validate.IsModelValid(carDetailsVm, out validationMessageInputs))
             {
                 if (repository.Insert(carDetailsVm))
                 {
@@ -65,7 +66,7 @@ namespace WebDomain.Controllers
 
                 return Json(new { Success = false, Message = "Problem occured while saving form to database" }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { Success = false, Message = "Please check the form inputs are invalid!" }, JsonRequestBehavior.AllowGet);
+            return Json(new { Success = false, Message = $"Please check the following inputs: {validationMessageInputs}" }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetMarks(int id)
