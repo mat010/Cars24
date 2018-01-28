@@ -99,7 +99,7 @@ $('#btnModal').click(function () {
 $('#btnSubmit').click(function () {
     //var myFormData = $('#myForm').serialize();
     var carAdvert = {
-        BrandId:  $('select[name=BrandId]').val(),
+        BrandId: $('select[name=BrandId]').val(),
         ModelId: $('select[name=ModelId]').val(),
         Price: $('input[name=Price]').val(),
         City: $('input[name=City]').val(),
@@ -129,13 +129,25 @@ $('#btnSubmit').click(function () {
         data: carAdvert,
         url: '/Home/Insert',
         success: function (result) {
+            $('#modalAlert').removeClass();
+            $('#modalAlert').text('');
             //console.log(myFormData);
             //console.log(result);
             if (result.Success === true) {
                 //console.log("success true from json");
-                $('#myModal').modal('hide');
-                $('#myForm').trigger('reset');
-                location.reload();
+                $('#modalAlert').addClass("alert alert-success");
+                $('#modalAlert').show();
+                $('#modalAlert').text(result.Message);
+                setTimeout(function () {
+                    $('#myModal').modal('hide');
+                    $('#myForm').trigger('reset');
+                    location.reload();
+                }, 1000);
+            }
+            else if (result.Success === false) {
+                $('#modalAlert').addClass("alert alert-danger");
+                $('#modalAlert').text(result.Message);
+                $('#modalAlert').show();
             }
         }
     });
@@ -186,9 +198,27 @@ var UploadImage = function () {
         data: data,
         contentType: false,
         processData: false,
-        success: function(response) {
+        success: function (response) {
             $('#uploadedImage').show();
             $('#uploadedImage').append('<img src="' + response.Message + '" class="img-responsive thumbnail col-md-4" />');
         }
     });
 }
+
+$("input").focus(function () {
+    $('#modalAlert').fadeOut(1000, function () {
+        $('#modalAlert').text('');
+        $('#modalAlert').removeClass();
+    });
+});
+
+$("select")
+    .change(function () {
+        $("select option:selected").each(function () {
+            $('#modalAlert').fadeOut(1000, function () {
+                $('#modalAlert').text('');
+                $('#modalAlert').removeClass();
+            });
+        });
+    })
+    .trigger("change");

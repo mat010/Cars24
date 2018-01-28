@@ -60,12 +60,12 @@ namespace WebDomain.Controllers
             {
                 if (repository.Insert(carDetailsVm))
                 {
-                    return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { Success = true, Message = "Data will save successfuly" }, JsonRequestBehavior.AllowGet);
                 }
 
-                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+                return Json(new { Success = false, Message = "Problem occured while saving form to database" }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            return Json(new { Success = false, Message = "Please check the form inputs are invalid!" }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetMarks(int id)

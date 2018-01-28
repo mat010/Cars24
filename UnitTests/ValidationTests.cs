@@ -19,6 +19,8 @@ namespace UnitTests
 
             var car = new CarDetailsVM();
 
+            
+
             bool isValid = validator.IsModelValid(car);
 
             Assert.IsTrue(isValid);
