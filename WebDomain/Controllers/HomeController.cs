@@ -43,7 +43,7 @@ namespace WebDomain.Controllers
         {
             if (imgFile != null)
             {
-                var img = Path.GetFileNameWithoutExtension(imgFile.FileName);
+                var img = Path.GetFileNameWithoutExtension(imgFile.FileName).Replace(" ", "");
                 var imgExtension = Path.GetExtension(imgFile.FileName);
                 var newFileImgNameBaseOnCurrentTime = $"{img}_{DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond}{imgExtension}";
                 var fullPath = $"/UploadedImages/{newFileImgNameBaseOnCurrentTime}";

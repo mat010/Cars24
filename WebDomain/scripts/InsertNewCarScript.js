@@ -1,29 +1,4 @@
-﻿$('#ddlBrand').change(function () {
-    $('#imgLoader').show();
-    $('#ddlModel').empty();
-    var brandId = $(this).val();
-    //console.log(brandId);
-    if (brandId == -1) {
-        $('#ddlModel').append("<option value='-1'>--------------</option>");
-        $('#ddlModel').prop("disabled", true);
-    } else {
-        $.ajax({
-            type: 'POST',
-            url: '/Home/GetMarks?id=' + brandId,
-            success: function (result) {
-                //console.log(result);
-                $('#ddlModel').prop("disabled", false);
-                $('#ddlModel').append("<option value='-1'>--Select Model--</option>");
-                $.each(result, function (index, optiondata) {
-                    $('#ddlModel').append("<option value='" + optiondata.Id + "'>" + optiondata.ModelName + "</option>");
-                });
-                $('#imgLoader').hide();
-            }
-        });
-    }
-});
-
-$('#btnModal').click(function () {
+﻿$('#btnModal').click(function () {
     $('#imgLoader').show();
     $('#ddlBrand').empty();
     $('#ddlModel').empty();
@@ -42,6 +17,30 @@ $('#btnModal').click(function () {
             $('#ddlModel').prop("disabled", true);
             $.each(result, function (index, optiondata) {
                 $('#ddlBrand').append("<option value='" + optiondata.Id + "'>" + optiondata.BrandName + "</option>");
+            });
+        }
+    });
+
+    $('#ddlBrand').change(function () {
+        $('#imgLoader').show();
+        $('#ddlModel').empty();
+        var brandId = $(this).val();
+        if (brandId == -1) {
+            $('#ddlModel').append("<option value='-1'>--------------</option>");
+            $('#ddlModel').prop("disabled", true);
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '/Home/GetMarks?id=' + brandId,
+                success: function (result) {
+                    //console.log(result);
+                    $('#ddlModel').prop("disabled", false);
+                    $('#ddlModel').append("<option value='-1'>--Select Model--</option>");
+                    $.each(result, function (index, optiondata) {
+                        $('#ddlModel').append("<option value='" + optiondata.Id + "'>" + optiondata.ModelName + "</option>");
+                    });
+                    $('#imgLoader').hide();
+                }
             });
         }
     });
